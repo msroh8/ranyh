@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>الشبكات الغذائية | مدرسة الموهوبات العلمية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a bright field-expedition game world. Landscape hero, colour-coded tab per section, a player bar that follows the student, an arcade of games over a living food web. */
+:root{
+  --ink:#16313a; --muted:#5a7078; --bg:#f2f7f3; --card:#ffffff; --line:#dbe7e0;
+  --green:#14996a; --green-d:#0b5e43; --green-l:#dcf5ea;
+  --sun:#f7a823; --sun-l:#fff1d4;
+  --coral:#f0604d; --coral-l:#ffe3de;
+  --sky:#2d9cdb; --sky-l:#dcf0fb;
+  --plum:#8a5cd8; --plum-l:#efe6ff;
+  --display:"Baloo Bhaijaan 2","Tajawal",Tahoma,sans-serif;
+  --body:"Tajawal",Tahoma,"Segoe UI",sans-serif;
+  --r:20px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.8;font-weight:500}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.3;margin:0;text-wrap:balance;font-weight:700}
+p{margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px;border-radius:10px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+.ico{width:1.2em;height:1.2em;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;background:linear-gradient(180deg,#bfe6fb 0%,#e6f6ff 62%,#f2f7f3 100%)}
+.hero svg.scene{position:absolute;inset:auto 0 0 0;width:100%;height:100%;pointer-events:none}
+.hero .wrap{position:relative;padding-top:34px;padding-bottom:96px;display:flex;flex-direction:column;gap:10px}
+.school-tag{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:1.05rem;color:var(--green-d);background:rgba(255,255,255,.8);padding:4px 16px;border-radius:999px;width:fit-content}
+.school-tag .dot{width:10px;height:10px;border-radius:50%;background:var(--coral)}
+.hero h1{font-size:clamp(2.2rem,5.6vw,3.6rem);color:var(--green-d);font-weight:800;letter-spacing:0}
+.hero .sub{font-size:1.15rem;color:var(--ink);max-width:56ch}
+.people{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.person{background:#fff;border-radius:16px;padding:8px 16px;display:flex;flex-direction:column;line-height:1.4;box-shadow:0 4px 14px rgba(20,80,60,.08)}
+.person small{color:var(--muted);font-size:.85rem}
+.person b{font-family:var(--display);font-size:1.1rem}
+
+/* ---------- sticky bar ---------- */
+.bar{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);box-shadow:0 6px 20px rgba(20,60,50,.08)}
+.bar .wrap{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between;padding-top:10px;padding-bottom:10px}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:2px}
+.tab{--c:var(--sky);--cl:var(--sky-l);border:0;background:var(--cl);color:var(--c);display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:16px;font-family:var(--display);font-weight:700;font-size:1.08rem;white-space:nowrap;transition:transform .15s}
+.tab:hover{transform:translateY(-2px)}
+.tab[aria-selected="true"]{background:var(--c);color:#fff;box-shadow:0 6px 16px color-mix(in srgb,var(--c) 40%,transparent)}
+.tab.t-interact{--c:var(--green);--cl:var(--green-l)}
+.tab.t-act{--c:var(--coral);--cl:var(--coral-l)}
+.tab.t-honor{--c:#d48806;--cl:var(--sun-l)}
+.player{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.player select{min-width:170px;max-width:220px;border:2px solid var(--line);border-radius:12px;padding:6px 10px;background:#fff;font-weight:700}
+.player .iconbtn{font-size:1.05rem}
+html{font-size:var(--zoom,100%)} body{font-size:1.125rem}
+.stars{display:flex;align-items:center;gap:6px;background:var(--sun-l);color:#a86400;font-family:var(--display);font-weight:800;padding:4px 14px;border-radius:999px;font-size:1.1rem}
+.stars svg{fill:var(--sun);stroke:none;width:22px;height:22px}
+.stars.pop{animation:pop .5s}
+@keyframes pop{40%{transform:scale(1.25)}}
+.iconbtn{border:2px solid var(--line);background:#fff;border-radius:12px;width:40px;height:40px;display:grid;place-items:center;color:var(--muted)}
+.iconbtn:hover{border-color:var(--green);color:var(--green)}
+
+main{padding:30px 0 70px}
+.panel{display:none;flex-direction:column;gap:26px}
+.panel.active{display:flex}
+
+/* ---------- generic ---------- */
+.card{background:var(--card);border-radius:var(--r);padding:24px;box-shadow:0 8px 28px rgba(20,60,50,.07);display:flex;flex-direction:column;gap:16px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
+.sec-ico{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;color:#fff;background:var(--c,var(--green));flex:none}
+.sec-ico svg{width:28px;height:28px}
+.sec-head h2{font-size:1.6rem}
+.sec-head .tx{flex:1;min-width:220px}
+.sec-head .tx p{color:var(--muted);font-size:1rem}
+.lstyles{display:flex;gap:6px;flex-wrap:wrap}
+.ls{display:inline-flex;align-items:center;gap:5px;font-size:.85rem;font-weight:700;padding:3px 12px;border-radius:999px}
+.ls svg{width:16px;height:16px}
+.ls.v{background:var(--sky-l);color:#1a6fa0}.ls.a{background:var(--sun-l);color:#a86400}.ls.r{background:var(--plum-l);color:#6a3fbf}.ls.k{background:var(--coral-l);color:#c0392b}
+.btn{border:0;border-radius:14px;padding:10px 20px;font-family:var(--display);font-weight:700;font-size:1.02rem;display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;box-shadow:0 4px 0 var(--green-d);transition:transform .1s}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--green-d)}
+.btn.alt{background:#fff;color:var(--ink);box-shadow:0 4px 0 var(--line);border:2px solid var(--line)}
+.btn.sun{background:var(--sun);color:#4a2c00;box-shadow:0 4px 0 #c47f0a}
+.btn.coral{background:var(--coral);box-shadow:0 4px 0 #b8402f}
+.btn.sm{padding:6px 14px;font-size:.92rem}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.muted{color:var(--muted)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+
+/* ---------- intro ---------- */
+.video{border-radius:var(--r);min-height:280px;background:radial-gradient(circle at 30% 20%,#1fae7a,#0b5e43 70%);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:26px;position:relative;overflow:hidden}
+.video::before{content:"";position:absolute;inset:0;background:repeating-radial-gradient(circle at 70% 120%,rgba(255,255,255,.06) 0 30px,transparent 30px 60px)}
+.video>*{position:relative}
+.playbtn{width:96px;height:96px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 0 0 12px rgba(255,255,255,.18);transition:transform .2s}
+.playbtn:hover{transform:scale(1.08)}
+.playbtn svg{width:40px;height:40px;fill:var(--coral);stroke:none;margin-left:6px}
+.video h3{font-size:1.5rem}
+.video a{color:#fff}
+.video-embed{position:relative;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:#0b2a1f;box-shadow:0 10px 30px rgba(11,94,67,.25)}
+.video-embed.thumb a{position:absolute;inset:0;display:grid;place-items:center}
+.video-embed.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.video-embed.thumb .playbtn{position:relative}
+.video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vidset{display:flex;gap:8px;flex-wrap:wrap}
+.vidset input{flex:1;min-width:220px;border:2px solid var(--line);border-radius:12px;padding:8px 12px}
+.goals{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.goals li{display:flex;gap:12px;align-items:flex-start}
+.goals li b{flex:none;width:34px;height:34px;border-radius:11px;background:var(--green-l);color:var(--green-d);display:grid;place-items:center;font-family:var(--display)}
+.journey{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.step{border-radius:16px;padding:14px;background:var(--bg);display:flex;flex-direction:column;gap:4px;border-bottom:4px solid var(--c)}
+.step b{font-family:var(--display);color:var(--c);font-size:1.4rem;line-height:1}
+
+/* ---------- quiz runner ---------- */
+.quiz{border-radius:var(--r);background:var(--bg);padding:20px;display:flex;flex-direction:column;gap:16px}
+.qtop{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.dots{display:flex;gap:6px}
+.dots i{width:30px;height:8px;border-radius:9px;background:var(--line)}
+.dots i.on{background:var(--sky)} .dots i.ok{background:var(--green)} .dots i.no{background:var(--coral)}
+.qtext{font-family:var(--display);font-size:1.4rem;font-weight:700}
+.qopts{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.qopt{border:3px solid transparent;background:#fff;border-radius:16px;padding:14px 16px;text-align:start;display:flex;gap:12px;align-items:center;font-weight:700;box-shadow:0 4px 0 var(--line);transition:transform .1s}
+.qopt:hover:not(:disabled){transform:translateY(-2px);border-color:var(--sky)}
+.qopt .let{flex:none;width:36px;height:36px;border-radius:12px;display:grid;place-items:center;color:#fff;font-family:var(--display)}
+.qopt:nth-child(1) .let{background:var(--sky)}.qopt:nth-child(2) .let{background:var(--coral)}.qopt:nth-child(3) .let{background:var(--green)}.qopt:nth-child(4) .let{background:var(--plum)}
+.qopt.right{border-color:var(--green);background:var(--green-l)}
+.qopt.wrong{border-color:var(--coral);background:var(--coral-l);animation:shake .3s}
+.qopt:disabled{cursor:default}
+.feedback{border-radius:14px;padding:12px 16px;font-weight:500}
+.feedback.ok{background:var(--green-l)} .feedback.no{background:var(--sun-l)}
+.qres{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;padding:10px}
+.ring{width:140px;height:140px}
+.ring circle{fill:none;stroke-width:14}
+.ring .bgc{stroke:var(--line)} .ring .fg{stroke:var(--green);stroke-linecap:round;transform:rotate(-90deg);transform-origin:50% 50%;transition:stroke-dashoffset 1s}
+.ring text{font-family:var(--display);font-weight:800;font-size:30px;fill:var(--ink)}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+
+/* ---------- learning style hub ---------- */
+.hub{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.hubcard{border:3px solid transparent;border-radius:var(--r);padding:18px;background:var(--cl);color:var(--ink);text-align:start;display:flex;flex-direction:column;gap:8px;transition:transform .15s}
+.hubcard:hover{transform:translateY(-4px)}
+.hubcard[aria-pressed="true"]{border-color:var(--c);box-shadow:0 8px 20px color-mix(in srgb,var(--c) 30%,transparent)}
+.hubcard .hi{width:54px;height:54px;border-radius:16px;background:var(--c);color:#fff;display:grid;place-items:center}
+.hubcard .hi svg{width:30px;height:30px}
+.hubcard h3{font-size:1.25rem}
+.hubcard p{font-size:.95rem;color:var(--muted)}
+.hubcard.v{--c:var(--sky);--cl:var(--sky-l)}.hubcard.a{--c:var(--sun);--cl:var(--sun-l)}.hubcard.r{--c:var(--plum);--cl:var(--plum-l)}.hubcard.k{--c:var(--coral);--cl:var(--coral-l)}.hubcard.all{--c:var(--green);--cl:var(--green-l)}
+[data-style].hide{display:none}
+
+/* ---------- web ---------- */
+.modes{display:flex;flex-wrap:wrap;gap:8px}
+.mode{border:2px solid var(--line);background:#fff;border-radius:14px;padding:8px 16px;font-family:var(--display);font-weight:700;color:var(--muted)}
+.mode[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff}
+.webgrid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(250px,1fr);gap:18px}
+@media (max-width:800px){.webgrid{grid-template-columns:1fr}}
+.svgbox{border-radius:var(--r);background:linear-gradient(180deg,#d9f0fc 0%,#f4fbf6 55%,#e5f3d9 100%);overflow-x:auto;position:relative}
+svg.web{display:block;width:100%;min-width:540px;height:auto;direction:ltr}
+.nd{cursor:pointer}
+.nd circle{fill:#fff;stroke:#c9d8cf;stroke-width:3;transition:all .25s}
+.nd .em{font-size:32px}
+.nd .lb{font-family:var(--display);font-weight:700;font-size:16px;fill:var(--ink)}
+.nd:hover circle{stroke:var(--green)}
+.nd.prod circle{stroke:var(--green)}
+.nd.sel circle{stroke:var(--green-d);stroke-width:5;fill:var(--green-l)}
+.nd.dim{opacity:.28}
+.nd.gone{opacity:.25} .nd.gone circle{stroke:var(--coral);stroke-dasharray:6 5}
+.nd.up circle{stroke:var(--green);stroke-width:5;fill:var(--green-l)}
+.nd.down circle{stroke:var(--coral);stroke-width:5;fill:var(--coral-l)}
+.nd.pick circle{stroke:var(--sun);stroke-width:5;fill:var(--sun-l)}
+.nd.ask circle{stroke:var(--plum);stroke-width:5;fill:var(--plum-l)}
+.nd.bad circle{stroke:var(--coral);stroke-width:5}
+.eg{stroke:#8aa39a;stroke-width:3;transition:all .25s}
+.eg.dim{opacity:.1}
+.eg.c-sun{stroke:var(--sun);stroke-width:5}
+.eg.c-sky{stroke:var(--sky);stroke-width:5}
+.eg.c-green{stroke:var(--green);stroke-width:5}
+.eg.c-coral{stroke:var(--coral);stroke-width:5}
+.eg.dec{stroke-dasharray:4 6;stroke:#9a7b4f}
+.pt{fill:var(--sun);stroke:#fff;stroke-width:1.5}
+.side{display:flex;flex-direction:column;gap:12px}
+.info{background:var(--bg);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.info h3{font-size:1.3rem;display:flex;align-items:center;gap:8px}
+.role{display:inline-block;width:fit-content;background:var(--green);color:#fff;border-radius:999px;padding:1px 12px;font-size:.9rem;font-weight:700}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.92rem;color:var(--muted)}
+.legend i{display:inline-block;width:26px;height:5px;border-radius:3px;vertical-align:middle;margin-inline-end:6px}
+.fx{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+.fx li{display:flex;gap:10px;align-items:flex-start;font-size:.98rem;background:#fff;border-radius:12px;padding:8px 12px}
+.fx .u{color:var(--green);font-weight:800}.fx .d{color:var(--coral);font-weight:800}
+.chk{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--muted)}
+.chk input{width:20px;height:20px;accent-color:var(--green)}
+
+/* compare infographic */
+.compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.cmp{border-radius:18px;padding:16px;background:var(--bg);display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center}
+.cmp svg{width:100%;max-width:300px;height:auto;direction:ltr}
+.cmp .draw{stroke-dasharray:300;stroke-dashoffset:300;animation:draw 2.4s ease forwards infinite alternate}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+/* audio narrator */
+.tracks{display:flex;flex-direction:column;gap:10px}
+.track{display:flex;gap:14px;align-items:flex-start;background:var(--bg);border-radius:16px;padding:14px;border-inline-start:6px solid transparent;transition:all .2s}
+.track.on{border-inline-start-color:var(--sun);background:var(--sun-l)}
+.track .pb{flex:none;width:46px;height:46px;border-radius:50%;background:var(--sun);color:#4a2c00;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.3rem}
+.track .pb svg{width:20px;height:20px;fill:currentColor;stroke:none;margin-left:3px}
+.track h4{font-size:1.1rem}
+.track p{font-size:.98rem;color:var(--muted)}
+.note{background:var(--sun-l);border-radius:14px;padding:10px 14px;font-size:.95rem}
+
+/* fill blanks */
+.para{font-size:1.15rem;line-height:2.5}
+.blank{border:0;border-bottom:3px dashed var(--plum);background:var(--plum-l);border-radius:8px;padding:0 12px;min-width:110px;font-weight:800;color:var(--plum);margin:0 4px}
+.blank.sel{outline:3px solid var(--sun)}
+.blank.ok{background:var(--green-l);color:var(--green-d);border-bottom-color:var(--green)}
+.blank.no{background:var(--coral-l);color:#b8402f;border-bottom-color:var(--coral)}
+.bank{display:flex;flex-wrap:wrap;gap:8px}
+.chipw{border:2px solid var(--plum);background:#fff;color:var(--plum);border-radius:999px;padding:4px 14px;font-weight:800}
+.chipw.used{opacity:.35}
+textarea{width:100%;min-height:130px;border:2px solid var(--line);border-radius:14px;padding:12px;resize:vertical;line-height:1.8;background:#fff}
+
+/* ---------- arcade ---------- */
+.arcade{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.gcard{border:0;border-radius:var(--r);padding:0;background:#fff;text-align:start;box-shadow:0 8px 22px rgba(20,60,50,.09);overflow:hidden;display:flex;flex-direction:column;transition:transform .15s}
+.gcard:hover{transform:translateY(-5px)}
+.gcard[aria-pressed="true"]{outline:4px solid var(--c)}
+.gcard .art{height:96px;background:var(--cl);display:flex;align-items:center;justify-content:center;gap:6px;font-size:40px;position:relative}
+.gcard .best{position:absolute;top:10px;inset-inline-start:10px;background:#fff;border-radius:999px;font-size:.8rem;padding:1px 10px;font-weight:800;color:#a86400}
+.gcard .gb{padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.gcard h3{font-size:1.2rem}
+.gcard p{font-size:.92rem;color:var(--muted)}
+.stage{border-radius:var(--r);background:#fff;box-shadow:0 8px 28px rgba(20,60,50,.07);padding:24px;display:flex;flex-direction:column;gap:16px;border-top:8px solid var(--c,var(--coral))}
+.stage-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.stage-head h2{font-size:1.6rem}
+.hud{display:flex;gap:10px;flex-wrap:wrap}
+.hud span{background:var(--bg);border-radius:12px;padding:4px 14px;font-family:var(--display);font-weight:700}
+.hud b{color:var(--coral)}
+
+/* speed game */
+.speed{display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;padding:10px}
+.statement{font-family:var(--display);font-size:clamp(1.4rem,3.6vw,2.1rem);font-weight:800;background:var(--bg);border-radius:22px;padding:26px 30px;min-height:120px;display:grid;place-items:center;width:100%;max-width:640px}
+.statement.ok{background:var(--green-l)} .statement.no{background:var(--coral-l)}
+.tf{display:flex;gap:16px}
+.tf button{min-width:150px;font-size:1.5rem;padding:16px 26px}
+.timer{width:100%;max-width:640px;height:14px;background:var(--line);border-radius:9px;overflow:hidden}
+.timer i{display:block;height:100%;background:linear-gradient(90deg,var(--coral),var(--sun));width:100%}
+
+/* memory */
+.mem{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;perspective:900px}
+@media (max-width:560px){.mem{grid-template-columns:repeat(3,1fr)}}
+.mc{border:0;background:none;padding:0;height:120px;position:relative;transform-style:preserve-3d;transition:transform .45s}
+.mc.flip,.mc.done{transform:rotateY(180deg)}
+.mc .f,.mc .b{position:absolute;inset:0;border-radius:16px;display:grid;place-items:center;backface-visibility:hidden;padding:8px;text-align:center}
+.mc .f{background:linear-gradient(135deg,var(--green),var(--sky));color:#fff;font-family:var(--display);font-size:2rem}
+.mc .b{background:#fff;border:3px solid var(--line);transform:rotateY(180deg);font-weight:700;font-size:.95rem;line-height:1.45}
+.mc .b.term{font-family:var(--display);font-size:1.35rem;color:var(--green-d)}
+.mc.done .b{border-color:var(--green);background:var(--green-l)}
+
+/* sorter */
+.pool{display:flex;flex-wrap:wrap;gap:10px;min-height:64px;padding:12px;border:3px dashed var(--line);border-radius:18px;background:var(--bg)}
+.item{background:#fff;border:2px solid var(--line);border-radius:14px;padding:8px 14px;font-weight:700;cursor:grab;user-select:none;box-shadow:0 3px 0 var(--line);touch-action:manipulation}
+.item.picked{border-color:var(--sun);background:var(--sun-l);transform:scale(1.06)}
+.item.ok{border-color:var(--green);background:var(--green-l)}
+.item.no{border-color:var(--coral);background:var(--coral-l)}
+.buckets{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.bucket{border-radius:18px;padding:12px;min-height:140px;background:var(--cl,var(--bg));border:3px solid transparent;display:flex;flex-direction:column;gap:10px;cursor:pointer}
+.bucket.over{border-color:var(--c,var(--green))}
+.bucket h4{font-size:1.1rem;color:var(--c,var(--ink))}
+.bucket .drop{display:flex;flex-wrap:wrap;gap:8px}
+
+/* unscramble */
+.word-hint{font-size:1.2rem;font-weight:700;background:var(--plum-l);border-radius:16px;padding:14px 18px;text-align:center}
+.slots,.letters{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;min-height:70px}
+.slots{direction:rtl}
+.lt{width:62px;height:62px;border-radius:16px;border:0;background:var(--plum);color:#fff;font-family:var(--display);font-size:1.9rem;font-weight:800;box-shadow:0 5px 0 #5f3aa6}
+.lt.in{background:#fff;color:var(--plum);border:3px solid var(--plum);box-shadow:none}
+.built{font-family:var(--display);font-size:2.2rem;text-align:center;color:var(--plum);min-height:1.4em;font-weight:800}
+
+/* riddles */
+.riddle{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+.bigplay{width:110px;height:110px;border-radius:50%;border:0;background:var(--sun);display:grid;place-items:center;box-shadow:0 0 0 14px var(--sun-l)}
+.bigplay svg{width:46px;height:46px;stroke:#4a2c00}
+.rtext{font-size:1.2rem;font-weight:700;background:var(--bg);border-radius:16px;padding:14px 18px;max-width:640px}
+.rops{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;width:100%;max-width:640px}
+.rop{border:3px solid var(--line);background:#fff;border-radius:18px;padding:12px;display:flex;flex-direction:column;align-items:center;font-weight:800;font-family:var(--display)}
+.rop span{font-size:2.6rem;line-height:1.2}
+.rop.right{border-color:var(--green);background:var(--green-l)}
+.rop.wrong{border-color:var(--coral);background:var(--coral-l)}
+
+/* predict */
+.plist{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.plist li{display:flex;align-items:center;gap:10px;justify-content:space-between;background:var(--bg);border-radius:14px;padding:8px 12px;flex-wrap:wrap}
+.plist li b{font-family:var(--display);font-size:1.1rem}
+.ud{display:flex;gap:6px}
+.ud button{border:2px solid var(--line);background:#fff;border-radius:10px;padding:2px 14px;font-weight:800}
+.ud button[aria-pressed="true"].u{background:var(--green);border-color:var(--green);color:#fff}
+.ud button[aria-pressed="true"].d{background:var(--coral);border-color:var(--coral);color:#fff}
+.plist li.ok{background:var(--green-l)} .plist li.no{background:var(--coral-l)}
+.why{font-size:.9rem;color:var(--muted);flex-basis:100%}
+
+/* ---------- honor ---------- */
+.honor-hero{border-radius:var(--r);background:linear-gradient(160deg,#ffcf5c,#f7a823 60%,#ef8b16);color:#4a2c00;padding:26px;display:flex;flex-direction:column;gap:18px;position:relative;overflow:hidden}
+.honor-hero h2{font-size:2rem}
+.podium{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:end}
+.pod{background:rgba(255,255,255,.92);border-radius:20px 20px 10px 10px;padding:16px 10px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.pod .av{width:64px;height:64px;font-size:1.8rem}
+.pod.p1{padding-top:30px;padding-bottom:30px}
+.pod.p1 .av{width:84px;height:84px;font-size:2.3rem;box-shadow:0 0 0 6px #fff3c4}
+.pod .nm{font-family:var(--display);font-weight:800;font-size:1.15rem;overflow-wrap:anywhere}
+.pod .medal{font-family:var(--display);font-weight:800;font-size:1rem;background:var(--sun);color:#4a2c00;border-radius:999px;padding:0 12px}
+.pod.empty{opacity:.55}
+.av{border-radius:50%;display:grid;place-items:center;color:#fff;font-family:var(--display);font-weight:800;flex:none}
+.hform{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
+.hform label{display:flex;flex-direction:column;gap:4px;font-weight:700;font-size:.92rem}
+.hform input,.hform select{border:2px solid var(--line);border-radius:12px;padding:8px 12px;background:#fff;min-width:150px}
+.hlist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.hlist li{background:#fff;border-radius:18px;padding:14px;display:flex;gap:12px;align-items:center;box-shadow:0 4px 14px rgba(20,60,50,.06)}
+.hlist .av{width:52px;height:52px;font-size:1.4rem}
+.hlist .who{flex:1;min-width:0}
+.hlist .who b{font-family:var(--display);font-size:1.15rem;display:block;overflow-wrap:anywhere}
+.badges{display:flex;flex-wrap:wrap;gap:4px;margin-top:2px}
+.badges span{background:var(--sun-l);color:#8a5200;border-radius:999px;font-size:.78rem;padding:0 8px;font-weight:700}
+.hpts{display:flex;flex-direction:column;align-items:center;gap:2px}
+.hpts strong{font-family:var(--display);font-size:1.5rem;color:#c47f0a;line-height:1}
+.hctl{display:flex;gap:4px}
+.hctl button{border:2px solid var(--line);background:#fff;border-radius:10px;width:32px;height:32px;font-weight:800;display:grid;place-items:center}
+.hctl button:hover{border-color:var(--sun)}
+.hctl .del:hover{border-color:var(--coral);color:var(--coral)}
+
+/* modal / toast / confetti */
+.modal{position:fixed;inset:0;background:rgba(10,30,25,.5);display:none;place-items:center;z-index:80;padding:18px}
+.modal.open{display:grid}
+.flab{display:flex;flex-direction:column;gap:4px;font-weight:700;font-size:.95rem}
+.flab input,.flab select{border:2px solid var(--line);border-radius:12px;padding:9px 12px;background:#fff;font-weight:500}
+.modal .box{background:#fff;border-radius:var(--r);padding:24px;max-width:420px;width:100%;display:flex;flex-direction:column;gap:16px}
+.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);background:var(--ink);color:#fff;font-weight:700;padding:10px 20px;border-radius:14px;z-index:90;opacity:0;transition:all .25s;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:85}
+#report{display:none}
+@page{size:A4;margin:14mm}
+@media print{
+  body{background:#fff}
+  body>*:not(#report){display:none!important}
+  #report{display:block;color:#111;font-family:var(--body);font-size:12pt;line-height:1.7}
+  .rp-head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid #14996a;padding-bottom:8px;margin-bottom:14px}
+  .rp-head h1{font-size:20pt;color:#0b5e43}
+  .rp-head .sc{font-family:var(--display);font-weight:800;font-size:14pt}
+  .rp-meta{display:grid;grid-template-columns:1fr 1fr;gap:4px 20px;margin-bottom:12px}
+  #report h2{font-size:14pt;color:#0b5e43;margin:16px 0 6px;border-inline-start:5px solid #f7a823;padding-inline-start:8px}
+  #report table{width:100%;border-collapse:collapse;margin-top:4px;font-variant-numeric:tabular-nums}
+  #report th,#report td{border:1px solid #c9d8cf;padding:5px 8px;text-align:start;vertical-align:top}
+  #report th{background:#dcf5ea}
+  #report tr{break-inside:avoid}
+  #report ul{margin:0;padding-inline-start:20px}
+  .rp-box{border:1px solid #c9d8cf;border-radius:8px;padding:8px 12px;white-space:pre-wrap;min-height:40px}
+  .rp-sign{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:30px;text-align:center}
+  .rp-sign div{border-top:1px solid #555;padding-top:6px}
+}
+footer{text-align:center;color:var(--muted);padding:0 0 40px;font-size:.95rem}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></symbol>
+  <symbol id="i-web" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="18" r="2.5"/><circle cx="19" cy="18" r="2.5"/><circle cx="12" cy="13" r="2"/><path d="M12 7.5V11M10.5 14.3l-3.7 2.3M13.5 14.3l3.7 2.3M7.5 18h9"/></symbol>
+  <symbol id="i-game" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="11" rx="5"/><path d="M7 10.5v4M5 12.5h4"/><circle cx="16" cy="11" r="1"/><circle cx="18" cy="14" r="1"/></symbol>
+  <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H4.5a3 3 0 0 0 3.5 4M16 6h3.5a3 3 0 0 1-3.5 4M12 13v4M8 20h8M9.5 17h5"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-ear" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 3-2 4-3 5.5S14 18 12.5 19.5 8 20 8 17"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-1.5 2-1.5 3.5"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V11M11 10.5V4a1.5 1.5 0 0 1 3 0v6.5M14 10.5V5.5a1.5 1.5 0 0 1 3 0V14a7 7 0 0 1-7 7h-.5a6 6 0 0 1-4.7-2.3L3 15.5a1.6 1.6 0 0 1 2.4-2.1L8 16"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"/></symbol>
+  <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></symbol>
+  <symbol id="i-mute" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M17 9l5 6M22 9l-5 6"/></symbol>
+  <symbol id="i-full" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M21 3L10 14M21 3l-7 18-4-7-7-4z"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 19V5M8 7h7M8 11h5"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6L4.5 18.5A1.7 1.7 0 0 0 6 21h12a1.7 1.7 0 0 0 1.5-2.5L14 9V3M7 15h10"/></symbol>
+</svg>
+
+<header class="hero">
+  <svg class="scene" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <circle cx="140" cy="70" r="46" fill="#ffd35c"/><circle cx="140" cy="70" r="66" fill="#ffd35c" opacity=".25"/>
+    <g fill="#fff" opacity=".9"><ellipse cx="420" cy="60" rx="60" ry="18"/><ellipse cx="460" cy="48" rx="38" ry="18"/><ellipse cx="860" cy="80" rx="70" ry="18"/><ellipse cx="900" cy="66" rx="40" ry="18"/></g>
+    <path d="M0 220 C200 150 330 190 520 170 S900 120 1200 180 V300 H0z" fill="#9fdcae"/>
+    <path d="M0 250 C180 210 380 240 600 220 S980 200 1200 235 V300 H0z" fill="#5fc28a"/>
+    <path d="M0 280 C260 260 520 285 800 268 S1100 262 1200 275 V300 H0z" fill="#f2f7f3"/>
+    <g font-size="34"><text x="60" y="262">🦒</text><text x="150" y="250">🌳</text><text x="230" y="270">🦓</text><text x="330" y="262">🌳</text><text x="420" y="160">🦅</text></g>
+  </svg>
+  <div class="wrap">
+    <span class="school-tag"><span class="dot"></span>مدرسة الموهوبات العلمية</span>
+    <h1>رحلة في الشبكات الغذائية</h1>
+    <p class="sub">العلوم · الصف السادس · الدرس الأول: السلاسل والشبكات الغذائية وهرم الطاقة. نستكشف، ونلعب، ونتنافس على لوحة الشرف!</p>
+    <div class="people">
+      <div class="person"><small>معلمة المقرر</small><b>الأستاذة حياة عائد</b></div>
+      <div class="person"><small>مديرة المدرسة</small><b>الأستاذة سوزان التميمي</b></div>
+    </div>
+  </div>
+</header>
+
+<div class="bar">
+  <div class="wrap">
+    <nav class="tabs" role="tablist" aria-label="أقسام الدرس">
+      <button class="tab t-intro" role="tab" data-tab="intro" id="tb-intro" aria-controls="intro"><svg class="ico"><use href="#i-play"/></svg>المقدمة</button>
+      <button class="tab t-interact" role="tab" data-tab="interact" id="tb-interact" aria-controls="interact"><svg class="ico"><use href="#i-web"/></svg>التفاعلات</button>
+      <button class="tab t-act" role="tab" data-tab="activities" id="tb-activities" aria-controls="activities"><svg class="ico"><use href="#i-game"/></svg>الأنشطة والألعاب</button>
+      <button class="tab t-honor" role="tab" data-tab="honor" id="tb-honor" aria-controls="honor"><svg class="ico"><use href="#i-trophy"/></svg>لوحة الشرف</button>
+    </nav>
+    <div class="player">
+      <button class="btn sun sm" id="quickHonor"><svg class="ico"><use href="#i-trophy"/></svg>أضيفي إلى لوحة الشرف</button>
+      <button class="iconbtn" id="zoomOut" title="تصغير الخط" aria-label="تصغير الخط" style="font-weight:800">أ-</button>
+      <button class="iconbtn" id="zoomIn" title="تكبير الخط" aria-label="تكبير الخط" style="font-weight:800">أ+</button>
+      <button class="iconbtn" id="fsBtn" title="ملء الشاشة" aria-label="ملء الشاشة"><svg class="ico"><use href="#i-full"/></svg></button>
+      <button class="iconbtn" id="muteBtn" title="المؤثرات الصوتية" aria-label="تشغيل المؤثرات أو كتمها"><svg class="ico"><use href="#i-sound"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+
+<!-- ================= المقدمة ================= -->
+<section class="panel" id="intro" role="tabpanel" aria-labelledby="tb-intro">
+  <div class="card">
+    <div class="sec-head">
+      <div class="sec-ico" style="--c:var(--coral)"><svg class="ico"><use href="#i-play"/></svg></div>
+      <div class="tx"><h2>المقدمة التشويقية</h2><p>شاهدي الفيديو، ثم أجيبي عن سؤال اليوم: ماذا يحدث لو اختفى الفأر؟</p></div>
+      <div class="lstyles"><span class="ls v"><svg class="ico"><use href="#i-eye"/></svg>بصري</span><span class="ls a"><svg class="ico"><use href="#i-ear"/></svg>سمعي</span></div>
+    </div>
+    <div class="video" id="videoBox"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="sec-head"><div class="sec-ico"><svg class="ico"><use href="#i-flask"/></svg></div><div class="tx"><h2>أهداف الدرس</h2></div></div>
+      <ul class="goals">
+        <li><b>١</b><span>أعرّف الشبكة الغذائية، وأفرّق بينها وبين السلسلة الغذائية.</span></li>
+        <li><b>٢</b><span>أحدّد أدوار المخلوقات: آكلات الأعشاب، وآكلات اللحوم، والقارتة، والكانسة.</span></li>
+        <li><b>٣</b><span>أميّز المفترس من الفريسة، وأذكر مخلوقًا يكون الاثنين معًا.</span></li>
+        <li><b>٤</b><span>أتنبّأ بأثر اختفاء نوع واحد على توازن الشبكة كلها.</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="sec-head"><div class="sec-ico" style="--c:var(--sky)"><svg class="ico"><use href="#i-star"/></svg></div><div class="tx"><h2>خريطة الرحلة</h2></div></div>
+      <div class="journey">
+        <div class="step" style="--c:var(--coral)"><b>١</b>الفيديو</div>
+        <div class="step" style="--c:var(--sky)"><b>٢</b>تحدّي السلاسل</div>
+        <div class="step" style="--c:var(--plum)"><b>٣</b>اكتشفي ما تعرفين</div>
+        <div class="step" style="--c:var(--green)"><b>٤</b>التفاعلات</div>
+        <div class="step" style="--c:var(--coral)"><b>٥</b>٨ ألعاب</div>
+        <div class="step" style="--c:#d48806"><b>٦</b>لوحة الشرف</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec-head">
+      <div class="sec-ico" style="--c:var(--sky)"><svg class="ico"><use href="#i-book"/></svg></div>
+      <div class="tx"><h2>تحدّي المراجعة: السلاسل الغذائية</h2><p>درسنا السلاسل في الحصة الماضية. لنتأكد أن الأساس ثابت.</p></div>
+    </div>
+    <div id="q-review"></div>
+  </div>
+
+  <div class="card">
+    <div class="sec-head">
+      <div class="sec-ico" style="--c:var(--plum)"><svg class="ico"><use href="#i-web"/></svg></div>
+      <div class="tx"><h2>اختبار تشخيصي: ماذا تعرفين عن الشبكات؟</h2><p>لم ندرسها بعد، فأجيبي بما تتوقعين. لا بأس بالخطأ هنا؛ فهو يكشف ما نركّز عليه.</p></div>
+    </div>
+    <div id="q-diag"></div>
+  </div>
+</section>
+
+<!-- ================= التفاعلات ================= -->
+<section class="panel" id="interact" role="tabpanel" aria-labelledby="tb-interact">
+  <div class="card">
+    <div class="sec-head">
+      <div class="sec-ico"><svg class="ico"><use href="#i-hand"/></svg></div>
+      <div class="tx"><h2>كيف تحبّين أن تتعلّمي؟</h2><p>اختاري أسلوبك ليظهر مساره، أو تابعي كل المسارات.</p></div>
+    </div>
+    <div class="hub" role="group" aria-label="أنماط التعلم">
+      <button class="hubcard all" data-pick="all" aria-pressed="true"><span class="hi"><svg class="ico"><use href="#i-star"/></svg></span><h3>كل المسارات</h3><p>جرّبي كل شيء بالترتيب.</p></button>
+      <button class="hubcard v" data-pick="v" aria-pressed="false"><span class="hi"><svg class="ico"><use href="#i-eye"/></svg></span><h3>أتعلّم بالنظر</h3><p>شبكة حيّة تتدفق فيها الطاقة، ومقارنة مرسومة.</p></button>
+      <button class="hubcard a" data-pick="a" aria-pressed="false"><span class="hi"><svg class="ico"><use href="#i-ear"/></svg></span><h3>أتعلّم بالاستماع والحوار</h3><p>فيديو المقدمة، وحلقة نقاش، ولعبة الألغاز.</p></button>
+      <button class="hubcard r" data-pick="r" aria-pressed="false"><span class="hi"><svg class="ico"><use href="#i-pen"/></svg></span><h3>أتعلّم بالقراءة والكتابة</h3><p>ملخّص بفراغات أكمّلها، وسؤال أكتب فيه بأسلوبي.</p></button>
+      <button class="hubcard k" data-pick="k" aria-pressed="false"><span class="hi"><svg class="ico"><use href="#i-hand"/></svg></span><h3>أتعلّم بالحركة</h3><p>أضغط وأسحب وأبني الشبكة بيدي.</p></button>
+    </div>
+  </div>
+
+  <div class="card" data-style="v k">
+    <div class="sec-head">
+      <div class="sec-ico"><svg class="ico"><use href="#i-web"/></svg></div>
+      <div class="tx"><h2>شبكة غذائية على اليابسة</h2><p>السهم يتجه من المخلوق المأكول إلى من يأكله، أي في اتجاه انتقال الطاقة.</p></div>
+      <div class="lstyles"><span class="ls v"><svg class="ico"><use href="#i-eye"/></svg>بصري</span><span class="ls k"><svg class="ico"><use href="#i-hand"/></svg>حركي</span></div>
+    </div>
+    <div class="row" style="justify-content:space-between">
+      <div class="modes" role="group" aria-label="طريقة الاستكشاف">
+        <button class="mode" data-mode="explore" aria-pressed="true">من يأكل من؟</button>
+        <button class="mode" data-mode="flow" aria-pressed="false">تدفّق الطاقة</button>
+        <button class="mode" data-mode="whatif" aria-pressed="false">ماذا لو اختفى؟</button>
+      </div>
+      <label class="chk"><input type="checkbox" id="showDec">إظهار المحلِّلات</label>
+    </div>
+    <div class="webgrid">
+      <div class="svgbox"><svg class="web" id="webMain" viewBox="0 0 720 480" role="img" aria-label="شبكة غذائية على اليابسة"></svg></div>
+      <div class="side" id="sideMain"></div>
+    </div>
+    <div class="legend" id="legendMain"></div>
+  </div>
+
+  <div class="card" data-style="v">
+    <div class="sec-head">
+      <div class="sec-ico" style="--c:var(--sky)"><svg class="ico"><use href="#i-eye"/></svg></div>
+      <div class="tx"><h2>السلسلة أم الشبكة؟ انظري الفرق</h2></div>
+      <div class="lstyles"><span class="ls v"><svg class="ico"><use href="#i-eye"/></svg>بصري</span></div>
+    </div>
+    <div class="compare">
+      <div class="cmp">
+        <h3>السلسلة الغذائية</h3>
+        <svg viewBox="0 0 300 120" aria-label="سلسلة: عشب ثم جرادة ثم فأر ثم أفعى">
+          <path class="draw" d="M40 60 H260" stroke="#f7a823" stroke-width="5" fill="none"/>
+          <g font-size="34" text-anchor="middle"><text x="40" y="72">🌾</text><text x="113" y="72">🦗</text><text x="186" y="72">🐁</text><text x="260" y="72">🐍</text></g>
+        </svg>
+        <p>مسار واحد للطاقة: كل حلقة تأكل الحلقة التي قبلها فقط.</p>
+      </div>
+      <div class="cmp">
+        <h3>الشبكة الغذائية</h3>
+        <svg viewBox="0 0 300 160" aria-label="شبكة: عدة سلاسل متداخلة">
+          <g stroke-width="4" fill="none">
+            <path class="draw" d="M40 130 L110 80 L190 80 L260 30" stroke="#f7a823"/>
+            <path class="draw" d="M150 135 L190 80" stroke="#2d9cdb"/>
+            <path class="draw" d="M110 80 L150 30 L260 30" stroke="#14996a"/>
+            <path class="draw" d="M40 130 L260 120" stroke="#f0604d"/>
+          </g>
+          <g font-size="28" text-anchor="middle"><text x="40" y="140">🌾</text><text x="150" y="148">🌱</text><text x="110" y="90">🦗</text><text x="190" y="90">🐁</text><text x="150" y="40">🐍</text><text x="260" y="40">🦅</text><text x="260" y="130">🦌</text></g>
+        </svg>
+        <p>عدة سلاسل متداخلة: تُظهر كل العلاقات الغذائية بين الأنواع.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-style="a">
+    <div class="sec-head">
+      <div class="sec-ico" style="--c:var(--sun)"><svg class="ico"><use href="#i-ear"/></svg></div>
+      <div class="tx"><h2>حلقة النقاش</h2><p>نقرأ المقطع بصوت مرتفع، ثم نكشف سؤال النقاش ونتحاور.</p></div>
+      <div class="lstyles"><span class="ls a"><svg class="ico"><use href="#i-ear"/></svg>سمعي</span></div>
+    </div>
+    <div class="tracks" id="tracks"></div>
+  </div>
+
+  <div class="card" data-style="r">
+    <div class="sec-head">
+      <div class="sec-ico" style="--c:var(--plum)"><svg class="ico"><use href="#i-pen"/></svg></div>
+      <div class="tx"><h2>ملخّص الدرس: أكملي الفراغات</h2><p>اضغطي فراغًا ثم اختاري الكلمة المناسبة من بنك الكلمات.</p></div>
+      <div class="lstyles"><span class="ls r"><svg class="ico"><use href="#i-pen"/></svg>قرائي كتابي</span></div>
+    </div>
+    <p class="para" id="para"></p>
+    <div class="bank" id="bank"></div>
+    <div class="row"><button class="btn" id="checkPara">تحقّقي</button><button class="btn alt sm" id="resetPara">إعادة</button><span id="paraMsg" class="muted"></span></div>
+  </div>
+
+  <div class="card" data-style="r">
+    <div class="sec-head">
+      <div class="sec-ico" style="--c:var(--plum)"><svg class="ico"><use href="#i-pen"/></svg></div>
+      <div class="tx"><h2>اكتبي بأسلوبك</h2><p>لماذا تعطينا الشبكة الغذائية صورة أدق مما يحدث في الطبيعة من السلسلة؟ استخدمي مثالًا من شبكة اليابسة.</p></div>
+    </div>
+    <textarea id="reflect" aria-label="إجابة الصف" placeholder="أفضل إجابة…"></textarea>
+    <div class="row"><button class="btn alt sm" id="showModel">نموذج إجابة</button><span class="muted" id="wc"></span></div>
+    <p class="note" id="model" hidden>لأن الشبكة تجمع عدة سلاسل غذائية متداخلة، فتبيّن كل العلاقات الغذائية في النظام البيئي لا مسارًا واحدًا للطاقة. مثلًا: الفأر يأكل البذور والجراد معًا، ويأكله النسر والأفعى، وهذا لا تُظهره سلسلة واحدة.</p>
+  </div>
+
+  <div class="card" data-style="k">
+    <div class="sec-head">
+      <div class="sec-ico" style="--c:var(--coral)"><svg class="ico"><use href="#i-hand"/></svg></div>
+      <div class="tx"><h2>مسار الحركة</h2><p>ستجدين في تبويب الأنشطة ألعابًا تبنين فيها الشبكة بيدك، وتسحبين البطاقات، وتفكّين الشفرة.</p></div>
+      <button class="btn coral" data-goto="activities">اذهبي إلى الألعاب</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= الأنشطة ================= -->
+<section class="panel" id="activities" role="tabpanel" aria-labelledby="tb-activities">
+  <div class="card">
+    <div class="sec-head">
+      <div class="sec-ico" style="--c:var(--coral)"><svg class="ico"><use href="#i-game"/></svg></div>
+      <div class="tx"><h2>ساحة الألعاب</h2><p>اختاري لعبة وابدئي التحدّي!</p></div>
+    </div>
+    <div class="arcade" id="arcade"></div>
+  </div>
+  <div class="stage" id="stage"></div>
+</section>
+
+<!-- ================= لوحة الشرف ================= -->
+<section class="panel" id="honor" role="tabpanel" aria-labelledby="tb-honor">
+  <div class="honor-hero">
+    <div class="sec-head">
+      <div class="sec-ico" style="--c:#fff;color:#d48806"><svg class="ico" style="stroke:#d48806"><use href="#i-trophy"/></svg></div>
+      <div class="tx"><h2>لوحة الشرف</h2><p style="color:#5a3a00">نجمات الشبكات الغذائية في مدرسة الموهوبات العلمية</p></div>
+    </div>
+    <div class="podium" id="podium"></div>
+  </div>
+  <div class="card">
+    <h3>إضافة طالبة إلى لوحة الشرف</h3>
+    <form class="hform" id="hform" autocomplete="off">
+      <label>اسم الطالبة<input id="hName" type="text" required placeholder="مثال: ريم أحمد"></label>
+      <label>سبب التكريم<select id="hBadge"></select></label>
+      <label id="hOtherL" hidden>اكتبي السبب<input id="hOther" type="text"></label>
+      <label>النجوم<select id="hPts"><option value="1">١</option><option value="2">٢</option><option value="3" selected>٣</option><option value="5">٥</option><option value="10">١٠</option></select></label>
+      <button class="btn sun" type="submit">أضيفي إلى اللوحة</button>
+    </form>
+    <ul class="hlist" id="hlist"></ul>
+    <div class="row">
+      <button class="btn alt sm" id="copyHonor">نسخ القائمة</button>
+      <button class="btn alt sm" id="clearHonor" style="color:var(--coral)">إفراغ اللوحة وكل الأسماء</button>
+      
+    </div>
+    <textarea id="copyBox" readonly hidden aria-label="نص القائمة"></textarea>
+  </div>
+  <div class="card">
+    <div class="sec-head">
+      <div class="sec-ico" style="--c:var(--sky)"><svg class="ico"><use href="#i-book"/></svg></div>
+      <div class="tx"><h2>تقرير الدرس</h2></div>
+      <button class="btn" id="exportPdf"><svg class="ico"><use href="#i-send"/></svg>تصدير PDF</button>
+    </div>
+    <label class="flab" for="tNotes">ملاحظات الحصة</label>
+    <textarea id="tNotes" placeholder="ملاحظات…"></textarea>
+    
+    <div class="row"><button class="btn alt sm" id="clearLog">بدء حصة جديدة (مسح سجل الأنشطة)</button></div>
+  </div>
+</section>
+</main>
+
+<footer>مدرسة الموهوبات العلمية · معلمة المقرر الأستاذة حياة عائد · مديرة المدرسة الأستاذة سوزان التميمي</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mText"><div class="box"><p id="mText" style="font-weight:700"></p><input id="mIn" type="text" hidden style="border:2px solid var(--line);border-radius:12px;padding:10px 12px" aria-label="الاسم"><div class="row"><button class="btn coral" id="mYes">نعم</button><button class="btn alt" id="mNo">إلغاء</button></div></div></div>
+<div class="modal" id="qmodal" role="dialog" aria-modal="true" aria-labelledby="qmT"><form class="box" id="qform" autocomplete="off"><h3 id="qmT">إضافة طالبة إلى لوحة الشرف</h3>
+  <label class="flab">اسم الطالبة<input id="qName" type="text" required></label>
+  <label class="flab">سبب التكريم<select id="qReason"></select></label>
+  <label class="flab" id="qOtherL" hidden>اكتبي السبب<input id="qOther" type="text"></label>
+  <label class="flab">النجوم<select id="qPts"><option value="1">١</option><option value="2">٢</option><option value="3" selected>٣</option><option value="5">٥</option></select></label>
+  <div class="row"><button class="btn sun" type="submit">أضيفي</button><button class="btn alt" type="button" id="qCancel">إلغاء</button></div></form></div>
+<div class="toast" id="toast" role="status"></div>
+<canvas id="confetti"></canvas>
+<div id="report" aria-hidden="true"></div>
+
+<script>
+/* ============================================================
+   رابط فيديو المقدمة التشويقية: غيّري الرابط بين علامتي التنصيص فقط
+   ============================================================ */
+const VIDEO_URL = "https://drive.google.com/file/d/13HvY5TpA5En2mvtbdNDijmG8HkdwC_8Z/view?usp=drive_link";   // لتغيير الفيديو: ضع الرابط الجديد بين علامتي التنصيص
+
+/* ===== أدوات ===== */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const ar=n=>Number(n).toLocaleString('ar-EG');
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const store={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v);}catch(e){return d;}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true;}catch(e){return false;}}};
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('show');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('show'),2300);}
+function ask(t,input){return new Promise(r=>{const m=$('#modal'),inp=$('#mIn');$('#mText').textContent=t;inp.hidden=!input;inp.value='';$('#mYes').textContent=input?'إضافة':'نعم';$('#mYes').className='btn '+(input?'':'coral');m.classList.add('open');(input?inp:$('#mNo')).focus();
+  const d=v=>{m.classList.remove('open');inp.onkeydown=null;r(input?(v?inp.value.trim():null):v);};$('#mYes').onclick=()=>d(true);$('#mNo').onclick=()=>d(false);inp.onkeydown=e=>{if(e.key==='Enter')d(true);};});}
+
+/* أصوات */
+let muted=store.get('fw2-mute',false), actx=null;
+function tone(f,t0,dur,type='sine',vol=.14){try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();const o=actx.createOscillator(),g=actx.createGain();o.type=type;o.frequency.value=f;g.gain.setValueAtTime(vol,actx.currentTime+t0);g.gain.exponentialRampToValueAtTime(.001,actx.currentTime+t0+dur);o.connect(g).connect(actx.destination);o.start(actx.currentTime+t0);o.stop(actx.currentTime+t0+dur);}catch(e){}}
+const sfx={ok(){if(!muted){tone(660,0,.12);tone(880,.1,.18);}},no(){if(!muted)tone(180,0,.25,'square',.06);},win(){if(!muted)[523,659,784,1046].forEach((f,i)=>tone(f,i*.11,.25,'triangle'));},tap(){if(!muted)tone(520,0,.05,'sine',.06);}};
+function setMuteIcon(){$('#muteBtn').innerHTML=`<svg class="ico"><use href="#i-${muted?'mute':'sound'}"/></svg>`;}
+$('#muteBtn').onclick=()=>{muted=!muted;store.set('fw2-mute',muted);setMuteIcon();};setMuteIcon();
+
+/* قصاصات احتفال */
+function confetti(){if(RM)return;const c=$('#confetti'),x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;const cols=['#14996a','#f7a823','#f0604d','#2d9cdb','#8a5cd8'];
+  const P=Array.from({length:140},()=>({x:innerWidth/2+(Math.random()-.5)*200,y:innerHeight*.35,vx:(Math.random()-.5)*14,vy:-Math.random()*13-4,s:Math.random()*8+5,c:cols[Math.floor(Math.random()*5)],r:Math.random()*6}));
+  let f=0;(function step(){x.clearRect(0,0,c.width,c.height);P.forEach(p=>{p.vy+=.35;p.x+=p.vx;p.y+=p.vy;p.r+=.1;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle=p.c;x.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);x.restore();});if(++f<120)requestAnimationFrame(step);else x.clearRect(0,0,c.width,c.height);})();}
+
+/* ===== سجل الحصة ===== */
+const LOGK='fw4-log';let actLog=store.get(LOGK,{});
+const ACT={'quiz-review':['تحدّي المراجعة: السلاسل الغذائية','قرائي'],'quiz-diag':['الاختبار التشخيصي: الشبكات الغذائية','قرائي'],'para':['ملخّص الدرس: إكمال الفراغات','قرائي كتابي'],
+ 'g-build':['لعبة: ابني الشبكة','حركي'],'g-speed':['لعبة: سباق الأسهم','بصري'],'g-memory':['لعبة: الذاكرة','بصري'],'g-predict':['لعبة: توقّعي الانهيار','قرائي'],
+ 'g-sort':['لعبة: صنّفيني','حركي'],'g-venn':['لعبة: السلسلة أم الشبكة','قرائي'],'g-word':['لعبة: فكّي الشفرة','قرائي'],'g-riddle':['لعبة: من أنا؟','سمعي']};
+function award(key,score,max){const e=actLog[key]||{times:0};e.times++;e.score=score;e.max=max||null;e.at=Date.now();actLog[key]=e;store.set(LOGK,actLog);renderReport();return 0;}
+let zoom=store.get('fw3-zoom',100);const setZoom=z=>{zoom=Math.min(150,Math.max(85,z));document.documentElement.style.setProperty('--zoom',zoom+'%');store.set('fw3-zoom',zoom);};setZoom(zoom);
+$('#zoomIn').onclick=()=>setZoom(zoom+10);$('#zoomOut').onclick=()=>setZoom(zoom-10);
+$('#fsBtn').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}catch(e){toast('ملء الشاشة غير متاح هنا؛ اضغطي F11');}};
+
+/* ===== التبويبات ===== */
+const TABS=['intro','interact','activities','honor'];
+function showTab(id){if(!TABS.includes(id))id='intro';$$('.panel').forEach(p=>p.classList.toggle('active',p.id===id));$$('.tab').forEach(t=>t.setAttribute('aria-selected',t.dataset.tab===id));if(id==='interact')web.draw();if(id==='honor')renderHonor();}
+function go(id){location.hash=id;showTab(id);window.scrollTo({top:$('.bar').offsetTop,behavior:RM?'auto':'smooth'});}
+$$('.tab').forEach(t=>t.onclick=()=>{sfx.tap();go(t.dataset.tab);});
+$$('[data-goto]').forEach(b=>b.onclick=()=>go(b.dataset.goto));
+addEventListener('hashchange',()=>showTab(location.hash.slice(1)));
+
+/* ===== الفيديو ===== */
+const ytId=u=>{const m=(u||'').match(/(?:youtu\.be\/|v=|embed\/|shorts\/|live\/)([A-Za-z0-9_-]{11})/);return m?m[1]:null;};
+function renderVideo(){const dm=VIDEO_URL.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([A-Za-z0-9_-]{20,})/),bx=$('#videoBox');
+  if(dm){bx.className='video-embed';bx.innerHTML=`<iframe src="https://drive.google.com/file/d/${dm[1]}/preview" title="فيديو المقدمة التشويقية" allow="autoplay; fullscreen" allowfullscreen></iframe>`;return;}
+  renderYT();}
+function renderYT(){const m=VIDEO_URL.match(/(?:youtu\.be\/|v=|embed\/|shorts\/|live\/)([A-Za-z0-9_-]{11})/),id=m&&m[1]!=='AAAAAAAAAAA'?m[1]:null,b=$('#videoBox');
+  if(id&&location.protocol==='file:'){b.className='video-embed thumb';b.innerHTML=`<a href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener" aria-label="تشغيل الفيديو"><img src="https://i.ytimg.com/vi/${id}/maxresdefault.jpg" alt="" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${id}/hqdefault.jpg'"><span class="playbtn"><svg><use href="#i-play"/></svg></span></a>`;}
+  else if(id){b.className='video-embed';b.innerHTML=`<iframe src="https://www.youtube.com/embed/${id}?rel=0" title="فيديو المقدمة التشويقية" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;}
+  else b.innerHTML=`<span class="playbtn" style="opacity:.6"><svg><use href="#i-play"/></svg></span><h3>هنا فيديو المقدمة التشويقية</h3><p>ضعي رابط الفيديو في VIDEO_URL داخل ملف الصفحة.</p>`;}
+renderVideo();
+
+
+/* ===== الاختبارات (سؤال تلو الآخر) ===== */
+const QZ={
+ review:[
+  {q:'من أين تبدأ معظم السلاسل الغذائية بطاقتها؟',o:['الشمس','المحلِّلات','آكلات اللحوم','الماء'],a:0,w:'المنتِجات تستخدم طاقة الشمس لصنع غذائها، فتبدأ منها الطاقة.'},
+  {q:'المخلوق الذي يصنع غذاءه بنفسه يسمّى:',o:['مستهلكًا','منتِجًا','محلِّلًا','مفترسًا'],a:1,w:'المنتِجات كالنباتات والطحالب تصنع غذاءها بنفسها.'},
+  {q:'عشب ← جرادة ← طائر ← أفعى. من المستهلك الأول؟',o:['العشب','الطائر','الجرادة','الأفعى'],a:2,w:'الجرادة أول من يأكل المنتِج، فهي المستهلك الأول.'},
+  {q:'ما دور المحلِّلات؟',o:['تصطاد الحيوانات الصغيرة','تحلّل بقايا المخلوقات الميتة إلى مواد أبسط','تصنع الغذاء من ضوء الشمس','تأكل النباتات فقط'],a:1,w:'المحلِّلات كالفطريات والبكتيريا تعيد تدوير المواد لتستفيد منها المنتِجات.'},
+  {q:'الإنسان حين يأكل الخضراوات والفواكه يكون:',o:['منتِجًا','مستهلكًا أول','مستهلكًا ثالثًا','محلِّلًا'],a:1,w:'الإنسان قارت: مستهلك أول حين يأكل النباتات، وثانٍ أو ثالث حين يأكل الحيوانات.'},
+  {q:'ماذا يحدث للطاقة كلما ابتعدنا عن الشمس في السلسلة؟',o:['تزداد','تبقى كما هي','تقلّ','تتضاعف'],a:2,w:'تقلّ الطاقة في كل حلقة، ولهذا يقلّ عدد المخلوقات كلما ابتعدنا عن الشمس.'}],
+ diag:[
+  {q:'معظم الحيوانات في النظام البيئي جزء من:',o:['سلسلة غذائية واحدة','أكثر من سلسلة غذائية','لا شيء مما سبق'],a:1,w:'أغلب الحيوانات تأكل أكثر من نوع ويأكلها أكثر من نوع.',t:'الشبكة الغذائية'},
+  {q:'الحيوان الذي يأكل النباتات والحيوانات معًا:',o:['مفترس','منتِج','قارت','كانس'],a:2,w:'القارت يأكل النباتات والحيوانات، مثل الراكون والإنسان.',t:'الحيوانات القارتة'},
+  {q:'الحيوان الذي يأكل بقايا الحيوانات الميتة دون أن يصطاد:',o:['الكانس','المفترس','القارت','آكل الأعشاب'],a:0,w:'الكانس لا يصطاد ولا يقتل، مثل بعض العقبان والغربان.',t:'الحيوانات الكانسة'},
+  {q:'هل يكون المخلوق مفترسًا وفريسة في الوقت نفسه؟',o:['نعم','لا'],a:0,w:'الأفعى تفترس الفأر، وقد تصبح فريسة للنسر.',t:'المفترس والفريسة'},
+  {q:'إذا اختفى نوع واحد من الشبكة الغذائية:',o:['لا يتأثر أحد','تتأثر النباتات فقط','يختلّ توازن الشبكة كلها','تزداد كل الأنواع'],a:2,w:'يقلّ غذاء من كان يأكله، ويزداد ما كان يأكله.',t:'توازن الشبكة'},
+  {q:'الأسنان الخلفية لآكلات الأعشاب:',o:['حادة لتمزيق اللحم','مسطّحة لطحن النباتات','غير موجودة','مدبّبة للصيد'],a:1,w:'لها أسنان أمامية حادة لقطع النبات، وخلفية مسطّحة لطحنه.',t:'آكلات الأعشاب'}]
+};
+const LET=['أ','ب','ج','د'];
+function ringSVG(p){const C=2*Math.PI*58;return `<svg class="ring" viewBox="0 0 140 140"><circle class="bgc" cx="70" cy="70" r="58"/><circle class="fg" cx="70" cy="70" r="58" stroke-dasharray="${C}" stroke-dashoffset="${C}" data-off="${C*(1-p)}"/><text x="70" y="80" text-anchor="middle">${ar(Math.round(p*100))}٪</text></svg>`;}
+function runQuiz(root,key,per,{diag=false}={}){
+  const qs=QZ[key];let i=0,res=[];
+  function draw(){
+    if(i>=qs.length) return done();
+    const it=qs[i];
+    root.innerHTML=`<div class="quiz"><div class="qtop"><span class="muted" style="font-weight:700">السؤال ${ar(i+1)} من ${ar(qs.length)}</span><div class="dots">${qs.map((_,k)=>`<i class="${k<i?(res[k]?'ok':'no'):k===i?'on':''}"></i>`).join('')}</div></div>
+      <div class="qtext">${it.q}</div><div class="qopts">${it.o.map((o,k)=>`<button class="qopt" data-k="${k}"><span class="let">${LET[k]}</span>${o}</button>`).join('')}</div><div class="fb"></div></div>`;
+    root.querySelectorAll('.qopt').forEach(b=>b.onclick=()=>{
+      const k=+b.dataset.k, ok=k===it.a; res[i]=ok;
+      root.querySelectorAll('.qopt').forEach((x,j)=>{x.disabled=true;if(j===it.a)x.classList.add('right');else if(j===k)x.classList.add('wrong');});
+      ok?sfx.ok():sfx.no();
+      root.querySelector('.fb').innerHTML=`<div class="feedback ${ok?'ok':'no'}"><b>${ok?'أحسنتِ!':'ليست هذه.'}</b> ${it.w}</div><div class="row" style="margin-top:12px"><button class="btn">${i<qs.length-1?'السؤال التالي':'النتيجة'}</button></div>`;
+      const nb=root.querySelector('.fb .btn'); nb.focus(); nb.onclick=()=>{i++;draw();};
+    });
+  }
+  function done(){
+    const r=res.filter(Boolean).length,p=r/qs.length;
+    let title,msg;
+    if(diag){title=p>=.8?'أنتِ جاهزة للانطلاق!':p>=.5?'لديك أساس جيد':'سنبني المعرفة معًا';const miss=qs.filter((_,k)=>!res[k]).map(q=>q.t);msg=miss.length?'ركّزي في التفاعلات على: '+miss.join('، ')+'.':'تعرفين أفكار الشبكة مسبقًا. التفاعلات ستعمّقها.';}
+    else{title=p===1?'ممتاز! الدرجة كاملة':p>=.6?'أحسنتِ!':'راجعي وحاولي مرة أخرى';msg=`أجبتِ عن ${ar(r)} من ${ar(qs.length)} إجابة صحيحة.`;}
+    const add=award('quiz-'+key,r,qs.length);
+    root.innerHTML=`<div class="quiz"><div class="qres">${ringSVG(p)}<h3 style="font-size:1.6rem">${title}</h3><p>${msg}</p><div class="row" style="justify-content:center"><button class="btn alt" data-again>أعيدي المحاولة</button>${diag?'<button class="btn" data-goto2="interact">ابدئي التفاعلات</button>':''}</div></div></div>`;
+    requestAnimationFrame(()=>{const fg=root.querySelector('.fg');fg.style.strokeDashoffset=fg.dataset.off;});
+    if(p>=.8){sfx.win();confetti();}
+    root.querySelector('[data-again]').onclick=()=>{i=0;res=[];draw();};
+    const g=root.querySelector('[data-goto2]');if(g)g.onclick=()=>go('interact');
+  }
+  draw();
+}
+runQuiz($('#q-review'),'review',2);
+runQuiz($('#q-diag'),'diag',1,{diag:true});
+
+/* ===== بيانات الشبكة ===== */
+const N={
+ grass:{n:'العشب',e:'🌾',x:560,y:400,t:'prod',f:0,role:'منتِج',d:'يصنع غذاءه بنفسه مستخدمًا طاقة الشمس، فهو بداية مسار الطاقة.'},
+ seeds:{n:'البذور',e:'🌱',x:300,y:405,t:'prod',f:1,role:'منتِج',d:'أجزاء من النبات تحمل الطاقة التي صنعها، ويأكلها الفأر.'},
+ hopper:{n:'الجرادة',e:'🦗',x:135,y:285,t:'herb',f:1,role:'مستهلك أول · آكلة أعشاب',d:'تتغذى على أوراق النبات، ويأكلها الفأر.'},
+ gazelle:{n:'الغزال',e:'🦌',x:600,y:258,t:'herb',f:0,role:'مستهلك أول · آكل أعشاب',d:'أسنانه الأمامية حادة يقطع بها العشب، والخلفية مسطّحة يطحنه بها. يصطاده النمر.'},
+ mouse:{n:'الفأر',e:'🐁',x:360,y:258,t:'omni',f:0,role:'قارت · مستهلك أول وثانٍ',d:'يأكل البذور فيكون مستهلكًا أول، ويأكل الجراد فيكون مستهلكًا ثانيًا. تصطاده الأفعى والنسر.'},
+ snake:{n:'الأفعى',e:'🐍',x:150,y:122,t:'carn',f:1,role:'آكلة لحوم · مفترسة وفريسة',d:'تفترس الفأر، ثم قد تصبح فريسة للنسر.'},
+ eagle:{n:'النسر',e:'🦅',x:380,y:62,t:'carn',f:0,role:'آكل لحوم · في قمة الشبكة',d:'يأكل الأفعى والفأر؛ فقد يكون مستهلكًا ثالثًا أو رابعًا بحسب السلسلة.'},
+ tiger:{n:'النمر',e:'🐅',x:610,y:98,t:'carn',f:0,role:'آكل لحوم · مستهلك ثانٍ',d:'يمزّق فريسته بأنيابه، وغذاؤه في هذه الشبكة هو الغزال.'},
+ fungi:{n:'الفطر',e:'🍄',x:65,y:420,t:'dec',f:0,dec:1,role:'محلِّل',d:'يحلّل بقايا كل المخلوقات بعد موتها، فتعود المواد إلى التربة لتستفيد منها المنتِجات.'}
+};
+const E=[['grass','hopper'],['grass','gazelle'],['seeds','mouse'],['hopper','mouse'],['mouse','snake'],['mouse','eagle'],['snake','eagle'],['gazelle','tiger']];
+const DEC=['grass','hopper','gazelle','mouse','snake','eagle','tiger'].map(k=>[k,'fungi']);
+const foods=k=>E.filter(e=>e[1]===k).map(e=>e[0]), eaters=k=>E.filter(e=>e[0]===k).map(e=>e[1]);
+const nm=ks=>ks.map(k=>N[k].n).join(' و')||'لا شيء';
+const R=36,NS='http://www.w3.org/2000/svg';
+function el(t,a,p){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;}
+function geom(a,b){const A=N[a],B=N[b],dx=B.x-A.x,dy=B.y-A.y,L=Math.hypot(dx,dy),ux=dx/L,uy=dy/L;return{x1:A.x+ux*R,y1:A.y+uy*R,x2:B.x-ux*(R+9),y2:B.y-uy*(R+9)};}
+
+function WebView(svg,o){this.svg=svg;this.o=o;this.raf=null;}
+WebView.prototype.draw=function(){
+  const o=this.o,svg=this.svg;cancelAnimationFrame(this.raf);svg.innerHTML='';
+  const defs=el('defs',{},svg);
+  [['def','#8aa39a'],['sun','#f7a823'],['sky','#2d9cdb'],['green','#14996a'],['coral','#f0604d'],['dec','#9a7b4f']].forEach(([id,c])=>{const m=el('marker',{id:svg.id+'-m-'+id,viewBox:'0 0 10 10',refX:'7',refY:'5',markerWidth:'6',markerHeight:'6',orient:'auto'},defs);el('path',{d:'M0,0 L10,5 L0,10 z',fill:c},m);});
+  const showDec=o.showDec&&o.showDec();
+  const edges=(o.edges?o.edges():E).concat(showDec?DEC:[]);
+  const lines=[];
+  edges.forEach(([a,b])=>{const g=geom(a,b);let c=o.edgeClass?o.edgeClass(a,b):'';if(b==='fungi')c+=' dec';
+    const col=(c.match(/c-(sun|sky|green|coral)/)||[])[1]||(b==='fungi'?'dec':'def');
+    el('line',{...g,class:'eg '+c,'marker-end':`url(#${svg.id}-m-${col})`},svg);if(!/dim/.test(c)&&b!=='fungi')lines.push(g);});
+  this.lines=lines;this.pl=el('g',{},svg);
+  Object.entries(N).forEach(([k,n])=>{if(n.dec&&!showDec)return;
+    const c='nd '+(n.t==='prod'?'prod ':'')+(o.nodeClass?o.nodeClass(k):'');
+    const g=el('g',{class:c,tabindex:'0',role:'button','aria-label':n.n},svg);
+    el('circle',{cx:n.x,cy:n.y,r:R},g);el('text',{x:n.x,y:n.y+12,'text-anchor':'middle',class:'em'},g).textContent=n.e;
+    el('text',{x:n.x,y:n.y+R+21,'text-anchor':'middle',class:'lb'},g).textContent=n.n.replace(/^ال/,'');
+    const bd=o.badge&&o.badge(k);if(bd){el('circle',{cx:n.x+R-4,cy:n.y-R+6,r:14,style:`fill:${bd.c};stroke:#fff;stroke-width:2.5`},g);el('text',{x:n.x+R-4,y:n.y-R+12,'text-anchor':'middle',fill:'#fff','font-weight':'800','font-size':'16'},g).textContent=bd.t;}
+    if(o.onPick){g.addEventListener('click',()=>o.onPick(k,g));g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();o.onPick(k,g);}});}
+  });
+  if(o.flow&&o.flow()&&!RM)this.flow();
+};
+WebView.prototype.flow=function(){const pl=this.pl,ls=this.lines,dots=[];ls.forEach((g,i)=>{for(let j=0;j<2;j++)dots.push({g,ph:j/2+i*.13,c:el('circle',{r:6,class:'pt'},pl)});});
+  const t0=performance.now();const step=t=>{const s=(t-t0)/1800;dots.forEach(d=>{const p=(s+d.ph)%1;d.c.setAttribute('cx',d.g.x1+(d.g.x2-d.g.x1)*p);d.c.setAttribute('cy',d.g.y1+(d.g.y2-d.g.y1)*p);d.c.setAttribute('r',7-4*p);});if(this.svg.isConnected&&this.svg.closest('.panel.active,.stage'))this.raf=requestAnimationFrame(step);};this.raf=requestAnimationFrame(step);};
+
+/* محاكاة الاختفاء */
+function simulate(x){const fx={},q=[];const set=(k,dir,why,l)=>{if(k===x||fx[k]||N[k].dec)return;fx[k]={dir,why,l};if(l<2)q.push(k);};
+  eaters(x).forEach(p=>{const ot=foods(p).filter(f=>f!==x);set(p,'down',ot.length?`يقلّ غذاؤه لأنه كان يأكل ${N[x].n}، فيعتمد أكثر على ${nm(ot)}.`:`فقد غذاءه الوحيد في الشبكة (${N[x].n})، فيقلّ عدده كثيرًا.`,1);});
+  foods(x).forEach(f=>set(f,'up',N[f].t==='prod'?'قلّ من يأكله، فيزداد.':'اختفى أحد مفترسيه، فيزداد عدده.',1));
+  while(q.length){const k=q.shift(),v=fx[k];
+    if(v.dir==='up'){foods(k).forEach(f=>set(f,'down',`يزداد ${N[k].n} الذي يأكله، فيقلّ.`,2));eaters(k).forEach(p=>set(p,'up',`يتوفّر له غذاء أكثر بعد زيادة ${N[k].n}.`,2));}
+    else{eaters(k).forEach(p=>set(p,'down',`يقلّ غذاؤه بسبب قلّة ${N[k].n}.`,2));foods(k).forEach(f=>set(f,'up',`يقلّ ${N[k].n} الذي يأكله، فيزداد.`,2));}}
+  return fx;}
+
+/* ===== المستكشف الرئيسي ===== */
+let wm='explore',wsel=null,wgone=null,wfx={};
+const web=new WebView($('#webMain'),{
+  showDec:()=>$('#showDec').checked,
+  flow:()=>wm==='flow',
+  edgeClass:(a,b)=>{if(wm==='explore'&&wsel){if(b===wsel)return 'c-sun';if(a===wsel)return 'c-sky';return 'dim';}if(wm==='whatif'&&wgone&&(a===wgone||b===wgone))return 'dim';if(wm==='flow')return 'c-sun';return '';},
+  nodeClass:k=>{if(wm==='explore'&&wsel){if(k===wsel)return 'sel';if(!(foods(wsel).includes(k)||eaters(wsel).includes(k)||k==='fungi'||wsel==='fungi'))return 'dim';}if(wm==='whatif'){if(k===wgone)return 'gone';if(wfx[k])return wfx[k].dir;}return '';},
+  badge:k=>wm==='whatif'?(k===wgone?{c:'#f0604d',t:'✕'}:wfx[k]?{c:wfx[k].dir==='up'?'#14996a':'#f0604d',t:wfx[k].dir==='up'?'▲':'▼'}:null):null,
+  onPick:k=>{sfx.tap();if(wm==='explore')wsel=wsel===k?null:k;else if(wm==='whatif'){if(N[k].dec){toast('المحلِّلات تحلّل بقايا الجميع؛ جرّبي حيوانًا أو نباتًا');return;}wgone=k;wfx=simulate(k);}else if(wm==='flow'){wsel=k;}web.draw();side();}
+});
+function side(){const s=$('#sideMain'),lg=$('#legendMain');
+  if(wm==='explore'){lg.innerHTML='<span><i style="background:#f7a823"></i>ما يأكله</span><span><i style="background:#2d9cdb"></i>من يأكله</span>';
+    if(!wsel){s.innerHTML='<div class="info"><h3>اضغطي على أي مخلوق</h3><p>سيظهر دوره في الشبكة، وما يأكله، ومن يأكله.</p><p class="muted">تحدٍّ صغير: كم سلسلة يدخل فيها الفأر؟</p></div>';return;}
+    const n=N[wsel];s.innerHTML=`<div class="info"><h3><span style="font-size:2rem">${n.e}</span>${n.n}</h3><span class="role">${n.role}</span><p>${n.d}</p>${n.dec?'':`<p><b style="color:#c47f0a">يأكل:</b> ${n.t==='prod'?'يصنع غذاءه بنفسه':nm(foods(wsel))}</p><p><b style="color:#1a6fa0">يأكله:</b> ${nm(eaters(wsel))}</p>`}</div>`;}
+  if(wm==='flow'){lg.innerHTML='<span><i style="background:#f7a823"></i>اتجاه انتقال الطاقة</span>';
+    s.innerHTML=`<div class="info"><h3>الطاقة تتدفّق</h3><p>تأتي الطاقة من الشمس إلى العشب والبذور، ثم تنتقل مع كل وجبة على طول الأسهم.</p><p>لاحظي أن النقاط تصغر كلما تقدّمت: فالطاقة <b>تقلّ</b> في كل مستوى، لأن كل مخلوق يستهلك جزءًا منها في حياته.</p><p class="muted">لهذا يكون عدد النسور أقل بكثير من عدد الجراد.</p></div>`;}
+  if(wm==='whatif'){lg.innerHTML='<span><i style="background:#14996a"></i>يزداد ▲</span><span><i style="background:#f0604d"></i>يقلّ ▼</span>';
+    if(!wgone){s.innerHTML='<div class="info"><h3>اختاري مخلوقًا لتخفيه</h3><p>توقّعي أولًا: من سيتضرر؟ ومن سيزداد؟ ثم اضغطي لتري.</p><p class="muted">جرّبي الفأر، ثم الغزال، وقارني.</p></div>';return;}
+    s.innerHTML=`<div class="info"><h3>اختفى ${N[wgone].n}</h3><ul class="fx">${Object.entries(wfx).sort((a,b)=>a[1].l-b[1].l).map(([k,v])=>`<li><span class="${v.dir==='up'?'u':'d'}">${v.dir==='up'?'▲':'▼'}</span><span><b>${N[k].n}:</b> ${v.why}</span></li>`).join('')}</ul><p class="muted">تغيّر نوع واحد فوصل أثره إلى ${ar(Object.keys(wfx).length)} أنواع أخرى.</p><div class="row"><button class="btn sm" id="restore">أعيدي الشبكة</button></div></div>`;
+    $('#restore').onclick=()=>{wgone=null;wfx={};web.draw();side();};}}
+$$('.mode').forEach(b=>b.onclick=()=>{wm=b.dataset.mode;$$('.mode').forEach(x=>x.setAttribute('aria-pressed',x===b));wsel=null;wgone=null;wfx={};web.draw();side();});
+$('#showDec').onchange=()=>{if(wsel==='fungi')wsel=null;web.draw();};
+side();
+
+/* أنماط التعلم */
+$$('.hubcard').forEach(h=>h.onclick=()=>{sfx.tap();const p=h.dataset.pick;$$('.hubcard').forEach(x=>x.setAttribute('aria-pressed',x===h));$$('#interact [data-style]').forEach(c=>c.classList.toggle('hide',p!=='all'&&!c.dataset.style.split(' ').includes(p)));web.draw();});
+
+/* ===== حلقة النقاش ===== */
+const TRACKS=[
+ ['من السلسلة إلى الشبكة','تعلّمنا أن السلسلة الغذائية مسار واحد للطاقة. لكن الفأر لا يأكل البذور فقط، بل يأكل الجراد أيضًا. ومعظم الحيوانات جزء من أكثر من سلسلة غذائية، فتأخذ السلاسل صورة شبكة.','لماذا لا تكفي سلسلة واحدة لوصف كل ما يأكله الفأر؟'],
+ ['ما الشبكة الغذائية؟','الشبكة الغذائية نموذج يبيّن تداخل السلاسل الغذائية في نظام بيئي، ويُظهر العلاقات الغذائية بين كل الأنواع. والسهم فيها يتجه من المخلوق المأكول إلى من يأكله.','إلى أين يشير السهم في الشبكة؟ ولماذا اختار العلماء هذا الاتجاه؟'],
+ ['آكلات الأعشاب واللحوم','آكلات الأعشاب مستهلكات أولى تأكل المنتِجات فقط، لها أسنان أمامية حادة تقطع النبات وخلفية مسطّحة تطحنه. وآكلات اللحوم مستهلكات ثانية وثالثة تمزّق فريستها بأنيابها أو مناقيرها، وأغلبها يأكل أكثر من نوع، كالثعلب الذي يأكل الثدييات الصغيرة والطيور والأفاعي والسحالي.','قارنّ بين أسنان الغزال وأسنان النمر. كيف تناسب أسنان كلٍّ منهما غذاءه؟'],
+ ['القارتة والكانسة','الحيوانات القارتة تأكل النباتات والحيوانات معًا، مثل الراكون الذي يأكل الفاكهة والبذور وبيض الطيور. والحيوانات الكانسة تأكل بقايا الحيوانات الميتة ولا تصطاد، مثل بعض العقبان والغربان.','اذكرن حيوانًا قارتًا من بيئتنا. وماذا يحدث للبيئة لو اختفت الحيوانات الكانسة؟'],
+ ['المفترس والفريسة','المفترس يصطاد مخلوقًا حيًّا آخر ليأكله، والفريسة هي التي تُصطاد. والأفعى التي تبتلع الفأر اليوم قد تصبح غدًا فريسة للنسر، فهي مفترسة وفريسة معًا.','اذكرن مخلوقًا آخر يمكن أن يكون مفترسًا وفريسة في الوقت نفسه.'],
+ ['ماذا لو اختفى نوع؟','إذا اختفى الفأر يقلّ غذاء الأفعى فيقلّ عددها، ويزداد الجراد فيأكل نباتات أكثر. فالتغيّر في نوع واحد يُخلّ بتوازن الشبكة كلها. ولهذا تتميّز الحيوانات القارتة بأنها تجد غذاءً بديلًا.','لو اختفى النسر، ماذا يحدث للفأر؟ وماذا يحدث للبذور بعد ذلك؟']];
+function renderTracks(){$('#tracks').innerHTML=TRACKS.map((t,i)=>`<div class="track" id="tr${i}"><span class="pb" aria-hidden="true">${ar(i+1)}</span><div style="display:flex;flex-direction:column;gap:8px;flex:1"><h4>${t[0]}</h4><p>${t[1]}</p><div><button class="btn sun sm" data-i="${i}">سؤال للنقاش</button></div><p class="note" id="dq${i}" hidden><b>ناقشن:</b> ${t[2]}</p></div></div>`).join('');
+  $$('.track .btn').forEach(b=>b.onclick=()=>{const q=$('#dq'+b.dataset.i);q.hidden=!q.hidden;$$('.track').forEach(t=>t.classList.remove('on'));if(!q.hidden){$('#tr'+b.dataset.i).classList.add('on');sfx.tap();}b.textContent=q.hidden?'سؤال للنقاش':'إخفاء السؤال';});}
+renderTracks();
+
+/* ===== أكملي الفراغات ===== */
+const PARA=['معظم الحيوانات جزء من أكثر من ',['سلسلة'],' غذائية، فتتكوّن ',['الشبكة'],' الغذائية. الحيوانات التي تأكل النباتات فقط تسمّى ',['آكلات الأعشاب'],'، والتي تأكل النباتات والحيوانات معًا تسمّى ',['القارتة'],'. الحيوان الذي يصطاد غيره يسمّى ',['المفترس'],'، والذي يأكل بقايا الحيوانات الميتة يسمّى ',['الكانس'],'. وإذا اختفى نوع واحد يختلّ ',['توازن'],' الشبكة كلها.'];
+let selBlank=null;
+function renderPara(){const p=$('#para');p.innerHTML='';let bi=0;PARA.forEach(s=>{if(typeof s==='string')p.append(s);else{const b=document.createElement('button');b.className='blank';b.dataset.ans=s[0];b.dataset.i=bi++;b.textContent='؟';b.onclick=()=>{if(b.dataset.v){unuse(b.dataset.v);b.dataset.v='';b.textContent='؟';b.className='blank';}$$('.blank').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');selBlank=b;};p.append(b);}});
+  const words=shuffle(PARA.filter(s=>typeof s!=='string').map(s=>s[0]).concat(['المنتِج','المحلِّل']));
+  $('#bank').innerHTML=words.map(w=>`<button class="chipw" data-w="${w}">${w}</button>`).join('');
+  $$('.chipw').forEach(c=>c.onclick=()=>{if(c.classList.contains('used'))return;const b=selBlank&&!selBlank.dataset.v?selBlank:$$('.blank').find(x=>!x.dataset.v);if(!b)return;sfx.tap();b.dataset.v=c.dataset.w;b.textContent=c.dataset.w;b.className='blank';c.classList.add('used');const nx=$$('.blank').find(x=>!x.dataset.v);$$('.blank').forEach(x=>x.classList.remove('sel'));selBlank=nx||null;if(nx)nx.classList.add('sel');});
+  $('#paraMsg').textContent='';const f=$('.blank');f.classList.add('sel');selBlank=f;}
+function unuse(w){const c=$$('.chipw').find(c=>c.dataset.w===w&&c.classList.contains('used'));if(c)c.classList.remove('used');}
+$('#checkPara').onclick=()=>{const bs=$$('.blank');let ok=0;bs.forEach(b=>{const g=b.dataset.v===b.dataset.ans;b.classList.toggle('ok',g);b.classList.toggle('no',!!b.dataset.v&&!g);if(g)ok++;});
+  $('#paraMsg').textContent=`${ar(ok)} من ${ar(bs.length)} صحيحة`;award('para',ok,bs.length);if(ok===bs.length){sfx.win();confetti();}else{sfx.no();}};
+$('#resetPara').onclick=renderPara;renderPara();
+const rf=$('#reflect');rf.value=store.get('fw2-reflect','');const wcF=()=>{const n=rf.value.trim()?rf.value.trim().split(/\s+/).length:0;$('#wc').textContent=n?ar(n)+' كلمة':'';};
+rf.oninput=()=>{store.set('fw2-reflect',rf.value);wcF();};wcF();
+$('#showModel').onclick=()=>{const m=$('#model');m.hidden=!m.hidden;$('#showModel').textContent=m.hidden?'نموذج إجابة':'إخفاء النموذج';};
+
+/* ===== ساحة الألعاب ===== */
+const GAMES=[
+ {id:'build',t:'ابني الشبكة',d:'اربطي كل مخلوق بمن يأكله لتكتمل الشبكة.',art:'🌾⬅🦗⬅🐁',c:'var(--green)',cl:'var(--green-l)',st:'k'},
+ {id:'speed',t:'سباق الأسهم',d:'صح أم خطأ؟ أجيبي عن أكبر عدد في ٤٥ ثانية.',art:'⚡⏱️',c:'var(--coral)',cl:'var(--coral-l)',st:'v'},
+ {id:'memory',t:'لعبة الذاكرة',d:'طابقي كل مصطلح مع معناه.',art:'🃏🧠',c:'var(--sky)',cl:'var(--sky-l)',st:'v'},
+ {id:'predict',t:'توقّعي الانهيار',d:'اختفى مخلوق! من يزداد ومن يقلّ؟',art:'🐁❌',c:'var(--plum)',cl:'var(--plum-l)',st:'r'},
+ {id:'sort',t:'صنّفيني',d:'اسحبي كل مخلوق إلى مجموعته.',art:'🦌🐅🦝',c:'#d48806',cl:'var(--sun-l)',st:'k'},
+ {id:'venn',t:'السلسلة أم الشبكة؟',d:'رتّبي العبارات في شكل فِن.',art:'⭕⭕',c:'var(--green)',cl:'var(--green-l)',st:'r'},
+ {id:'word',t:'فكّي الشفرة',d:'رتّبي الحروف لتكوّني المصطلح العلمي.',art:'🔤🔐',c:'var(--plum)',cl:'var(--plum-l)',st:'r'},
+ {id:'riddle',t:'من أنا؟',d:'لغز عن مخلوق من الشبكة. من هو؟',art:'🗣️❓',c:'var(--sun)',cl:'var(--sun-l)',st:'a'}];
+const STL={v:['v','بصري','i-eye'],a:['a','سمعي','i-ear'],r:['r','قرائي','i-pen'],k:['k','حركي','i-hand']};
+let curGame=null,gameTimer=null;
+function renderArcade(){const a=$('#arcade');if(!a)return;a.innerHTML=GAMES.map(g=>{const s=STL[g.st];return `<button class="gcard" data-g="${g.id}" style="--c:${g.c};--cl:${g.cl}" aria-pressed="${curGame===g.id}"><div class="art">${g.art}</div><div class="gb"><h3>${g.t}</h3><p>${g.d}</p><span class="ls ${s[0]}" style="width:fit-content"><svg class="ico"><use href="#${s[2]}"/></svg>${s[1]}</span></div></button>`;}).join('');
+  $$('.gcard').forEach(c=>c.onclick=()=>{sfx.tap();openGame(c.dataset.g,true);});}
+function stageHead(g,hud){return `<div class="stage-head"><h2>${g.t}</h2><div class="hud">${hud}</div></div>`;}
+function openGame(id,scroll){clearInterval(gameTimer);curGame=id;const g=GAMES.find(x=>x.id===id),st=$('#stage');st.style.setProperty('--c',g.c);renderArcade();({build:gBuild,speed:gSpeed,memory:gMemory,predict:gPredict,sort:gSort,venn:gVenn,word:gWord,riddle:gRiddle})[id](st,g);if(scroll)st.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'});}
+function winBox(st,msg,again){const d=document.createElement('div');d.className='feedback ok';d.style.textAlign='center';d.innerHTML=`<h3 style="font-size:1.5rem">${msg}</h3><div class="row" style="justify-content:center;margin-top:10px"><button class="btn">العبي مرة أخرى</button><button class="btn alt">لعبة أخرى</button></div>`;st.appendChild(d);d.querySelector('.btn').onclick=again;d.querySelector('.btn.alt').onclick=()=>{const i=GAMES.findIndex(x=>x.id===curGame);openGame(GAMES[(i+1)%GAMES.length].id,true);};d.scrollIntoView({block:'nearest'});}
+
+/* ١ ابني الشبكة */
+function gBuild(st,g){let made=[],first=null,miss=0,hints=0;
+  st.innerHTML=stageHead(g,`<span>الروابط <b id="bN">٠</b> / ${ar(E.length)}</span><span>الأخطاء <b id="bM">٠</b></span>`)+`<p>اضغطي على المخلوق <b>المأكول</b> أولًا، ثم على المخلوق الذي <b>يأكله</b>، فيُرسم السهم.</p><div class="webgrid"><div class="svgbox"><svg class="web" id="webBuild" viewBox="0 0 720 480"></svg></div><div class="side"><div class="info"><h3>تلميحات</h3><p>ابدئي بالمنتِجات: العشب والبذور. من يأكلها؟</p><p id="bMsg" class="muted"></p><button class="btn alt sm" id="bHint">تلميح</button></div></div></div>`;
+  const v=new WebView($('#webBuild'),{edges:()=>made,edgeClass:()=> 'c-green',nodeClass:k=>k===first?'pick':'',
+    onPick:(k,gEl)=>{if(N[k].dec)return;if(!first){first=k;sfx.tap();v.draw();$('#bMsg').textContent=`من يأكل ${N[k].n}؟`;return;}
+      if(k===first){first=null;v.draw();return;}
+      const ok=E.some(e=>e[0]===first&&e[1]===k),dup=made.some(e=>e[0]===first&&e[1]===k);
+      if(ok&&!dup){made.push([first,k]);sfx.ok();$('#bMsg').textContent=`صحيح! ${N[k].n} ${N[k].f?'تأكل':'يأكل'} ${N[first].n}.`;}
+      else if(dup){$('#bMsg').textContent='رسمتِ هذا السهم من قبل.';}
+      else{miss++;sfx.no();gEl.querySelector('circle').style.stroke='#f0604d';$('#bMsg').textContent=`${N[k].n} لا ${N[k].f?'تأكل':'يأكل'} ${N[first].n}. جرّبي غيره.`;}
+      first=null;v.draw();$('#bN').textContent=ar(made.length);$('#bM').textContent=ar(miss);
+      if(made.length===E.length){const sc=Math.max(1,10-miss-hints*2);award('g-build',sc,10);sfx.win();confetti();winBox(st,`أكملتِ الشبكة! النتيجة ${ar(sc)} من ١٠`,()=>openGame('build'));}}});
+  $('#bHint').onclick=()=>{const left=E.filter(e=>!made.some(m=>m[0]===e[0]&&m[1]===e[1]));if(!left.length)return;hints++;const h=left[0];$('#bMsg').textContent=`تلميح: من يأكل ${N[h[0]].n}؟ ابحثي عند ${N[h[1]].e}`;};
+  v.draw();}
+
+/* ٢ سباق الأسهم */
+function speedPool(){const T=[],F=[];const verb=k=>N[k].f?'تأكل':'يأكل';
+  E.forEach(([a,b])=>{T.push(`${N[b].e} ${N[b].n} ${verb(b)} ${N[a].n} ${N[a].e}`);F.push(`${N[a].e} ${N[a].n} ${verb(a)} ${N[b].n} ${N[b].e}`);});
+  T.push('🐁 الفأر حيوان قارت','🐍 الأفعى مفترسة وفريسة معًا','🌾 العشب منتِج','🍄 الفطر محلِّل','🦝 الراكون يأكل النباتات والحيوانات','🐦 الغراب حيوان كانس','🦌 الغزال آكل أعشاب');
+  F.push('🦌 الغزال آكل لحوم','🐅 النمر منتِج','🍄 الفطر يصنع غذاءه من ضوء الشمس','🌾 العشب مستهلك أول','🦗 الجرادة تأكل الأفعى','🐦 الغراب يصطاد فريسته حيّة','🦅 النسر آكل أعشاب');
+  return shuffle(T.map(t=>[t,true]).concat(F.map(f=>[f,false])));}
+function gSpeed(st,g){let pool=speedPool(),i=0,score=0,streak=0,best=0,left=45,run=false;
+  st.innerHTML=stageHead(g,`<span>النقاط <b id="sS">٠</b></span><span>السلسلة <b id="sK">٠</b></span><span>الوقت <b id="sT">${ar(45)}</b></span>`)+`<div class="speed"><div class="timer"><i id="sBar"></i></div><div class="statement" id="sQ">هل أنتِ مستعدة؟ اضغطي «ابدئي»</div><div class="tf"><button class="btn" id="sY" disabled>صح</button><button class="btn coral" id="sN" disabled>خطأ</button></div><button class="btn sun" id="sGo">ابدئي السباق</button><p class="muted">يمكنك استخدام الأسهم في لوحة المفاتيح: ← صح، → خطأ</p></div>`;
+  const q=$('#sQ'),show=()=>{if(i>=pool.length){pool=speedPool();i=0;}q.className='statement';q.textContent=pool[i][0];};
+  const answer=v=>{if(!run)return;const ok=pool[i][1]===v;if(ok){score+=1+(streak>=3?1:0);streak++;best=Math.max(best,streak);sfx.ok();}else{streak=0;sfx.no();}q.className='statement '+(ok?'ok':'no');$('#sS').textContent=ar(score);$('#sK').textContent=ar(streak);i++;setTimeout(show,ok?250:650);};
+  $('#sY').onclick=()=>answer(true);$('#sN').onclick=()=>answer(false);
+  const key=e=>{if(!run||!document.body.contains($('#sQ')))return;if(e.key==='ArrowLeft')answer(true);if(e.key==='ArrowRight')answer(false);};document.onkeydown=key;
+  $('#sGo').onclick=()=>{run=true;score=0;streak=0;left=45;$('#sGo').hidden=true;$('#sY').disabled=$('#sN').disabled=false;show();
+    gameTimer=setInterval(()=>{left--;$('#sT').textContent=ar(left);$('#sBar').style.width=(left/45*100)+'%';if(left<=0){clearInterval(gameTimer);run=false;$('#sY').disabled=$('#sN').disabled=true;award('g-speed',score);sfx.win();if(score>=10)confetti();winBox(st,`انتهى الوقت! نقاطك ${ar(score)}، وأطول سلسلة إجابات ${ar(best)}`,()=>openGame('speed'));}},1000);};}
+
+/* ٣ الذاكرة */
+function gMemory(st,g){const P=[['منتِج','🌾 يصنع غذاءه بنفسه'],['مستهلك أول','🦗 يأكل المنتِجات مباشرة'],['قارت','🦝 يأكل النباتات والحيوانات'],['كانس','🐦 يأكل بقايا الحيوانات الميتة'],['مفترس','🐅 يصطاد مخلوقًا حيًّا'],['محلِّل','🍄 يحلّل بقايا المخلوقات']];
+  const cards=shuffle(P.flatMap((p,i)=>[{i,t:p[0],term:1},{i,t:p[1]}]));let open=[],done=0,moves=0,lock=false;
+  st.innerHTML=stageHead(g,`<span>المحاولات <b id="mM">٠</b></span><span>الأزواج <b id="mD">٠</b> / ${ar(P.length)}</span>`)+`<p>اقلبي بطاقتين: مصطلحًا ومعناه. إذا تطابقتا بقيتا مكشوفتين.</p><div class="mem" id="mem">${cards.map((c,k)=>`<button class="mc" data-k="${k}" aria-label="بطاقة"><span class="f">؟</span><span class="b ${c.term?'term':''}">${c.t}</span></button>`).join('')}</div>`;
+  $$('.mc').forEach(b=>b.onclick=()=>{if(lock||b.classList.contains('flip')||b.classList.contains('done'))return;sfx.tap();b.classList.add('flip');open.push(b);
+    if(open.length===2){moves++;$('#mM').textContent=ar(moves);const [x,y]=open.map(o=>cards[o.dataset.k]);
+      if(x.i===y.i&&x.term!==y.term){open.forEach(o=>{o.classList.add('done');o.classList.remove('flip');});open=[];done++;sfx.ok();$('#mD').textContent=ar(done);
+        if(done===P.length){const sc=Math.max(1,12-(moves-P.length));award('g-memory',sc,12);sfx.win();confetti();winBox(st,`أحسنتِ! أنهيتِ في ${ar(moves)} محاولة`,()=>openGame('memory'));}}
+      else{lock=true;sfx.no();setTimeout(()=>{open.forEach(o=>o.classList.remove('flip'));open=[];lock=false;},900);}}});}
+
+/* ٤ توقّعي الانهيار */
+function gPredict(st,g){const opts=['mouse','gazelle','eagle','grass','hopper','snake'];const x=opts[Math.floor(Math.random()*opts.length)];const fx=simulate(x),ks=Object.keys(fx);const ans={};let revealed=false;
+  st.innerHTML=stageHead(g,`<span>المخلوق المختفي: <b>${N[x].e} ${N[x].n}</b></span>`)+`<div class="webgrid"><div class="svgbox"><svg class="web" id="webPred" viewBox="0 0 720 480"></svg></div><div class="side"><div class="info"><h3>اختفى ${N[x].n}!</h3><p>توقّعي لكل مخلوق: هل يزداد عدده ▲ أم يقلّ ▼؟</p><ul class="plist">${ks.map(k=>`<li data-k="${k}"><b>${N[k].e} ${N[k].n}</b><span class="ud"><button class="u" aria-pressed="false" data-v="up">▲ يزداد</button><button class="d" aria-pressed="false" data-v="down">▼ يقلّ</button></span></li>`).join('')}</ul><button class="btn" id="pGo">اكشفي النتيجة</button></div></div></div>`;
+  const v=new WebView($('#webPred'),{edgeClass:(a,b)=>(a===x||b===x)?'dim':'',nodeClass:k=>k===x?'gone':revealed&&fx[k]?fx[k].dir:fx[k]?'ask':'',badge:k=>k===x?{c:'#f0604d',t:'✕'}:revealed&&fx[k]?{c:fx[k].dir==='up'?'#14996a':'#f0604d',t:fx[k].dir==='up'?'▲':'▼'}:fx[k]?{c:'#8a5cd8',t:'؟'}:null});v.draw();
+  $$('.plist .ud button').forEach(b=>b.onclick=()=>{if(revealed)return;sfx.tap();const li=b.closest('li');ans[li.dataset.k]=b.dataset.v;li.querySelectorAll('button').forEach(z=>z.setAttribute('aria-pressed',z===b));});
+  $('#pGo').onclick=()=>{if(Object.keys(ans).length<ks.length){toast('توقّعي لكل المخلوقات أولًا');return;}revealed=true;let ok=0;
+    $$('.plist li').forEach(li=>{const k=li.dataset.k,g2=ans[k]===fx[k].dir;if(g2)ok++;li.classList.add(g2?'ok':'no');li.insertAdjacentHTML('beforeend',`<span class="why">${fx[k].why}</span>`);});v.draw();$('#pGo').remove();
+    award('g-predict',ok,ks.length);ok===ks.length?(sfx.win(),confetti()):sfx.no();winBox(st,`توقّعتِ ${ar(ok)} من ${ar(ks.length)} بشكل صحيح`,()=>openGame('predict'));};}
+
+/* ٥ و ٦ السحب والتصنيف */
+function sorter(st,g,buckets,items,key,badge,cols){
+  st.innerHTML=stageHead(g,`<span>البطاقات <b>${ar(items.length)}</b></span>`)+`<p>اسحبي كل بطاقة إلى مكانها، أو اضغطي البطاقة ثم اضغطي المجموعة.</p><div class="pool" id="pool"></div><div class="buckets" id="bks"></div><div class="row"><button class="btn" id="chk">تحقّقي</button><button class="btn alt sm" id="rst">إعادة</button><span id="sMsg" style="font-weight:700"></span></div>`;
+  let picked=null;const pool=$('#pool'),bx=$('#bks');
+  buckets.forEach((b,i)=>{const d=document.createElement('div');d.className='bucket';d.dataset.b=i;d.style.setProperty('--c',cols[i][0]);d.style.setProperty('--cl',cols[i][1]);d.innerHTML=`<h4>${b}</h4><div class="drop"></div>`;bx.appendChild(d);
+    d.onclick=e=>{if(picked&&!e.target.closest('.item')){d.querySelector('.drop').appendChild(picked);picked.classList.remove('picked');picked=null;sfx.tap();}};
+    d.ondragover=e=>{e.preventDefault();d.classList.add('over');};d.ondragleave=()=>d.classList.remove('over');
+    d.ondrop=e=>{e.preventDefault();d.classList.remove('over');const it=st.querySelector(`.item[data-i="${e.dataTransfer.getData('text')}"]`);if(it){d.querySelector('.drop').appendChild(it);sfx.tap();}};});
+  shuffle(items.map((x,i)=>({...x,i}))).forEach(x=>{const s=document.createElement('span');s.className='item';s.textContent=x.t;s.draggable=true;s.dataset.i=x.i;s.tabIndex=0;s.setAttribute('role','button');
+    s.ondragstart=e=>{e.dataTransfer.setData('text',x.i);s.classList.remove('ok','no');};
+    const tap=e=>{e.stopPropagation();s.classList.remove('ok','no');if(picked===s){s.classList.remove('picked');picked=null;return;}if(picked)picked.classList.remove('picked');picked=s;s.classList.add('picked');sfx.tap();};
+    s.onclick=tap;s.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tap(e);}};pool.appendChild(s);});
+  pool.onclick=()=>{if(picked){pool.appendChild(picked);picked.classList.remove('picked');picked=null;}};
+  $('#rst').onclick=()=>openGame(curGame);
+  $('#chk').onclick=()=>{let ok=0,pl=0;st.querySelectorAll('.bucket .item').forEach(it=>{pl++;const g2=+it.closest('.bucket').dataset.b===items[it.dataset.i].b;it.classList.toggle('ok',g2);it.classList.toggle('no',!g2);if(g2)ok++;});
+    const m=$('#sMsg');award(key,ok,items.length);if(ok===items.length){m.textContent='رائع! كل البطاقات في مكانها.';m.style.color='var(--green)';sfx.win();confetti();winBox(st,`أحسنتِ! ${ar(ok)} من ${ar(items.length)}`,()=>openGame(curGame));}
+    else{m.style.color='var(--coral)';m.textContent=`${ar(ok)} صحيحة من ${ar(items.length)}`+(items.length-pl?`، وبقيت ${ar(items.length-pl)} بلا تصنيف`:'. انقلي البطاقات الحمراء.');sfx.no();}};}
+function gSort(st,g){sorter(st,g,['منتِجات','آكلات أعشاب','آكلات لحوم','حيوانات قارتة','حيوانات كانسة'],[
+  {t:'🌾 عشب',b:0},{t:'🌿 طحالب',b:0},{t:'🦌 غزال',b:1},{t:'🐇 أرنب',b:1},{t:'🦗 جرادة',b:1},{t:'🐅 نمر',b:2},{t:'🦊 ثعلب',b:2},{t:'🐍 أفعى',b:2},{t:'🦝 راكون',b:3},{t:'🧍‍♀️ إنسان',b:3},{t:'🐦 غراب',b:4},{t:'🦅 عُقاب يأكل البقايا',b:4}],
+  'g-sort','خبيرة التصنيف',[['var(--green)','var(--green-l)'],['#c47f0a','var(--sun-l)'],['var(--coral)','var(--coral-l)'],['var(--sky)','var(--sky-l)'],['var(--plum)','var(--plum-l)']]);}
+function gVenn(st,g){sorter(st,g,['السلسلة الغذائية فقط','مشترك بينهما','الشبكة الغذائية فقط'],[
+  {t:'مسار واحد فقط للطاقة',b:0},{t:'كل حلقة تأكل الحلقة التي قبلها فقط',b:0},{t:'تبدأ بالمنتِجات',b:1},{t:'الأسهم تشير إلى اتجاه انتقال الطاقة',b:1},{t:'تضمّ منتِجات ومستهلكات',b:1},{t:'تتداخل فيها عدة سلاسل',b:2},{t:'تُظهر العلاقات بين كل الأنواع',b:2},{t:'تمثيل أدق لما يحدث في الطبيعة',b:2}],
+  'g-venn','المقارِنة الذكية',[['#c47f0a','var(--sun-l)'],['var(--green)','var(--green-l)'],['var(--sky)','var(--sky-l)']]);}
+
+/* ٧ فكّي الشفرة */
+function gWord(st,g){const W=shuffle([['قارت','حيوان يأكل النباتات والحيوانات معًا'],['كانس','حيوان يأكل بقايا الحيوانات الميتة ولا يصطاد'],['مفترس','مخلوق يصطاد مخلوقًا حيًّا آخر ليأكله'],['فريسة','المخلوق الذي يُصطاد ويؤكل'],['منتج','مخلوق يصنع غذاءه بنفسه'],['محلل','مخلوق يحلّل بقايا المخلوقات الميتة'],['شبكة','مجموعة سلاسل غذائية متداخلة']]).slice(0,5);let wi=0,score=0;
+  st.innerHTML=stageHead(g,`<span>الكلمة <b id="wI">١</b> / ${ar(W.length)}</span><span>النقاط <b id="wS">٠</b></span>`)+`<div class="word-hint" id="wH"></div><div class="built" id="wB"></div><div class="slots" id="wSl"></div><div class="letters" id="wL"></div><div class="row" style="justify-content:center"><button class="btn alt sm" id="wClr">مسح</button><button class="btn alt sm" id="wSkip">تخطّي</button></div>`;
+  function load(){if(wi>=W.length){award('g-word',score,W.length);sfx.win();if(score>=4)confetti();winBox(st,`فككتِ ${ar(score)} من ${ar(W.length)} شفرات`,()=>openGame('word'));return;}
+    const [w,h]=W[wi];let L=Array.from(w);let s;do{s=shuffle(L);}while(s.join('')===w&&L.length>1);$('#wI').textContent=ar(wi+1);$('#wH').textContent='الدليل: '+h;$('#wB').textContent='';$('#wSl').innerHTML='';
+    $('#wL').innerHTML=s.map((c,i)=>`<button class="lt" data-i="${i}">${c}</button>`).join('');
+    $$('#wL .lt').forEach(b=>b.onclick=()=>{sfx.tap();const t=b.cloneNode(true);t.classList.add('in');t.onclick=()=>{t.remove();b.hidden=false;upd();};$('#wSl').appendChild(t);b.hidden=true;upd();});}
+  function upd(){const cur=$$('#wSl .lt').map(b=>b.textContent).join('');$('#wB').textContent=cur;const w=W[wi][0];if(cur.length===w.length){if(cur===w){score++;$('#wS').textContent=ar(score);sfx.ok();$('#wB').style.color='var(--green)';setTimeout(()=>{$('#wB').style.color='';wi++;load();},800);}else{sfx.no();$('#wB').style.color='var(--coral)';setTimeout(()=>$('#wB').style.color='',600);}}}
+  $('#wClr').onclick=()=>{$('#wSl').innerHTML='';$$('#wL .lt').forEach(b=>b.hidden=false);upd();};$('#wSkip').onclick=()=>{toast('الكلمة: '+W[wi][0]);wi++;load();};load();}
+
+/* ٨ من أنا؟ */
+function gRiddle(st,g){const ALL={gazelle:['🦌','غزال'],mouse:['🐁','فأر'],snake:['🐍','أفعى'],grass:['🌾','عشب'],crow:['🐦','غراب'],fungi:['🍄','فطر'],raccoon:['🦝','راكون'],tiger:['🐅','نمر'],eagle:['🦅','نسر'],hopper:['🦗','جرادة']};
+  const RD=shuffle([['أنا آكل أعشاب، أسناني الخلفية مسطّحة أطحن بها العشب، والنمر يصطادني. من أنا؟','gazelle'],['آكل البذور وآكل الجراد أيضًا، وتصطادني الأفعى والنسر. من أنا؟','mouse'],['أصطاد الفأر، لكن النسر يصطادني؛ فأنا مفترسة وفريسة. من أنا؟','snake'],['أصنع غذائي بنفسي من ضوء الشمس، وتأكلني الجرادة والغزال. من أنا؟','grass'],['لا أصطاد ولا أقتل، بل آكل بقايا الحيوانات الميتة. من أنا؟','crow'],['أحلّل بقايا كل المخلوقات، وأعيد المواد إلى التربة. من أنا؟','fungi'],['آكل الفاكهة والبذور وبيض الطيور؛ فأنا آكل النباتات والحيوانات. من أنا؟','raccoon'],['أنا في قمة الشبكة، آكل الأفعى والفأر. من أنا؟','eagle']]).slice(0,6);
+  let ri=0,score=0;
+  st.innerHTML=stageHead(g,`<span>اللغز <b id="rI">١</b> / ${ar(RD.length)}</span><span>النقاط <b id="rS">٠</b></span>`)+`<div class="riddle"><p class="rtext" id="rT" style="font-size:1.45rem"></p><div class="rops" id="rO"></div></div>`;
+  function load(){if(ri>=RD.length){award('g-riddle',score,RD.length);sfx.win();if(score>=5)confetti();winBox(st,`عرفتِ ${ar(score)} من ${ar(RD.length)} ألغاز`,()=>openGame('riddle'));return;}
+    const [t,a]=RD[ri];$('#rI').textContent=ar(ri+1);$('#rT').textContent=t;
+    const ch=shuffle([a,...shuffle(Object.keys(ALL).filter(k=>k!==a)).slice(0,3)]);
+    $('#rO').innerHTML=ch.map(k=>`<button class="rop" data-k="${k}"><span>${ALL[k][0]}</span>${ALL[k][1]}</button>`).join('');
+    $$('.rop').forEach(b=>b.onclick=()=>{const ok=b.dataset.k===a;$$('.rop').forEach(x=>{x.disabled=true;if(x.dataset.k===a)x.classList.add('right');});if(!ok)b.classList.add('wrong');ok?(score++,sfx.ok()):sfx.no();$('#rS').textContent=ar(score);setTimeout(()=>{ri++;load();},1500);});
+    }
+  load();}
+
+renderArcade();openGame('build',false);
+
+/* ===== لوحة الشرف ===== */
+const REASONS=['إجابة متميّزة في المراجعة','تفكير ناقد في سؤال «ماذا لو؟»','مشاركة فاعلة في حلقة النقاش','الفوز في لعبة تفاعلية','بناء الشبكة الغذائية بإتقان','إبداع في الإجابة الكتابية','التعاون مع الزميلات','الانضباط والتميّز السلوكي','سبب آخر…'];
+const HK='fw2-honor';let honor=store.get(HK,[]);const honorList=()=>[...honor].sort((a,b)=>b.points-a.points);
+const AVC=['#14996a','#2d9cdb','#f0604d','#8a5cd8','#d48806','#0b5e43'];
+const avc=s=>AVC[[...s].reduce((a,c)=>a+c.charCodeAt(0),0)%AVC.length];
+function saveH(){if(!store.set(HK,honor))toast('تعذّر الحفظ في هذا المتصفح');renderHonor();renderReport();}
+function addHonor(name,badges,pts){badges=[].concat(badges).filter(Boolean);const ex=honor.find(h=>h.name===name.trim());if(ex){ex.points+=pts;badges.forEach(b=>{if(!ex.badges.includes(b))ex.badges.push(b);});}else honor.push({name:name.trim(),badges,points:pts});saveH();}
+function renderHonor(){const s=[...honor].sort((a,b)=>b.points-a.points),pod=$('#podium');
+  const slot=(h,i)=>h?`<div class="pod p${i+1}"><span class="av" style="background:${avc(h.name)}">${[...h.name][0]}</span><span class="medal">${['الأولى','الثانية','الثالثة'][i]}</span><span class="nm"></span><span>${ar(h.points)} نجمة</span></div>`:`<div class="pod empty p${i+1}"><span class="av" style="background:#d9c08a">؟</span><span class="medal">${['الأولى','الثانية','الثالثة'][i]}</span><span class="nm">بانتظارك</span></div>`;
+  pod.innerHTML=[1,0,2].map(i=>slot(s[i],i)).join('');[1,0,2].forEach((i,j)=>{if(s[i])pod.children[j].querySelector('.nm').textContent=s[i].name;});
+  const ul=$('#hlist');ul.innerHTML='';
+  if(!s.length){ul.innerHTML='<li style="grid-column:1/-1;justify-content:center;color:var(--muted)">لا توجد أسماء بعد.</li>';return;}
+  s.forEach((h,i)=>{const li=document.createElement('li');li.innerHTML=`<span class="av" style="background:${avc(h.name)}">${[...h.name][0]}</span><div class="who"><b></b><div class="badges">${h.badges.map(b=>`<span>${b}</span>`).join('')}</div></div><div class="hpts"><strong>${ar(h.points)}</strong><div class="hctl"><button aria-label="إنقاص">−</button><button aria-label="زيادة">+</button><button class="del" aria-label="حذف">×</button></div></div>`;
+    li.querySelector('b').textContent=`${ar(i+1)}. ${h.name}`;const [m,p,d]=li.querySelectorAll('.hctl button');
+    m.onclick=()=>{h.points=Math.max(0,h.points-1);saveH();};p.onclick=()=>{h.points++;sfx.ok();saveH();};
+    d.onclick=async()=>{if(await ask(`حذف «${h.name}» من لوحة الشرف؟`)){honor=honor.filter(x=>x!==h);saveH();}};ul.appendChild(li);});}
+function fillReasons(sel,otherL){sel.innerHTML=REASONS.map(r=>`<option>${r}</option>`).join('');sel.onchange=()=>{otherL.hidden=sel.value!=='سبب آخر…';};otherL.hidden=true;}
+fillReasons($('#hBadge'),$('#hOtherL'));fillReasons($('#qReason'),$('#qOtherL'));
+const reasonOf=(sel,inp)=>sel.value==='سبب آخر…'?(inp.value.trim()||'تميّز في الحصة'):sel.value;
+$('#hform').onsubmit=e=>{e.preventDefault();const n=$('#hName').value.trim();if(!n)return;addHonor(n,reasonOf($('#hBadge'),$('#hOther')),+$('#hPts').value);$('#hName').value='';$('#hOther').value='';$('#hName').focus();sfx.win();confetti();toast('أُضيفت '+n+' إلى لوحة الشرف');};
+$('#quickHonor').onclick=()=>{const m=$('#qmodal');$('#qName').value='';$('#qOther').value='';fillReasons($('#qReason'),$('#qOtherL'));m.classList.add('open');$('#qName').focus();};
+$('#qCancel').onclick=()=>$('#qmodal').classList.remove('open');
+$('#qform').onsubmit=e=>{e.preventDefault();const n=$('#qName').value.trim();if(!n)return;addHonor(n,reasonOf($('#qReason'),$('#qOther')),+$('#qPts').value);$('#qmodal').classList.remove('open');sfx.win();confetti();toast('أُضيفت '+n+' إلى لوحة الشرف');};
+$('#clearHonor').onclick=async()=>{if(!honor.length){toast('اللوحة فارغة');return;}if(await ask('إفراغ لوحة الشرف وحذف كل الأسماء؟ لا يمكن التراجع.')){honor=[];saveH();toast('أُفرغت اللوحة');}};
+$('#clearLog').onclick=async()=>{if(await ask('مسح سجل الأنشطة وملاحظات الحصة لبدء حصة جديدة؟ (لوحة الشرف لا تتأثر)')){actLog={};store.set(LOGK,actLog);$('#tNotes').value='';store.set('fw4-notes','');renderReport();toast('بدأت حصة جديدة');}};
+const tn=$('#tNotes');tn.value=store.get('fw4-notes','');tn.oninput=()=>store.set('fw4-notes',tn.value);
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function renderReport(){const r=$('#report');if(!r)return;const now=new Date();
+  let hij='';try{hij=now.toLocaleDateString('ar-SA-u-ca-islamic-umalqura',{day:'numeric',month:'long',year:'numeric'});}catch(e){}
+  const greg=now.toLocaleDateString('ar-EG',{day:'numeric',month:'long',year:'numeric'});
+  const acts=Object.entries(actLog).filter(([k])=>ACT[k]).sort((a,b)=>a[1].at-b[1].at);
+  const hs=honorList();
+  r.innerHTML=`<div class="rp-head"><div><div class="sc">مدرسة الموهوبات العلمية</div><h1>تقرير درس: الشبكات الغذائية</h1></div><div>${esc(hij)}<br>${esc(greg)}</div></div>
+  <div class="rp-meta"><div><b>المادة:</b> العلوم · الصف السادس</div><div><b>الدرس:</b> السلاسل والشبكات الغذائية وهرم الطاقة</div><div><b>معلمة المقرر:</b> الأستاذة حياة عائد</div><div><b>مديرة المدرسة:</b> الأستاذة سوزان التميمي</div></div>
+  <h2>أهداف الدرس</h2><ul><li>تعريف الشبكة الغذائية والتفريق بينها وبين السلسلة الغذائية.</li><li>تحديد أدوار المخلوقات: آكلات الأعشاب، وآكلات اللحوم، والقارتة، والكانسة.</li><li>التمييز بين المفترس والفريسة، وذكر مخلوق يكون الاثنين معًا.</li><li>التنبؤ بأثر اختفاء نوع واحد على توازن الشبكة.</li></ul>
+  <h2>أنماط التعلم المراعاة</h2><p>بصري: الشبكة الحيّة وتدفّق الطاقة والمقارنة المرسومة. سمعي: فيديو المقدمة وحلقة النقاش ولعبة الألغاز. قرائي كتابي: إكمال الملخّص والسؤال الكتابي. حركي: بناء الشبكة والسحب والتصنيف وفكّ الشفرة.</p>
+  <h2>الأنشطة المنفّذة ونتائجها</h2>${acts.length?`<table><thead><tr><th>النشاط</th><th>نمط التعلم</th><th>آخر نتيجة</th><th>مرات التنفيذ</th></tr></thead><tbody>${acts.map(([k,v])=>`<tr><td>${ACT[k][0]}</td><td>${ACT[k][1]}</td><td>${v.max?`${ar(v.score)} من ${ar(v.max)}`:`${ar(v.score)} نقطة`}</td><td>${ar(v.times)}</td></tr>`).join('')}</tbody></table>`:'<p>لم تُسجَّل أنشطة في هذه الحصة بعد.</p>'}
+  <h2>لوحة الشرف</h2>${hs.length?`<table><thead><tr><th>#</th><th>اسم الطالبة</th><th>سبب التكريم</th><th>النجوم</th></tr></thead><tbody>${hs.map((h,i)=>`<tr><td>${ar(i+1)}</td><td>${esc(h.name)}</td><td>${h.badges.map(esc).join('، ')}</td><td>${ar(h.points)}</td></tr>`).join('')}</tbody></table>`:'<p>لم تُضَف طالبات إلى لوحة الشرف.</p>'}
+  ${$('#reflect').value.trim()?`<h2>أفضل إجابة في السؤال الكتابي</h2><div class="rp-box">${esc($('#reflect').value.trim())}</div>`:''}
+  <h2>ملاحظات المعلمة</h2><div class="rp-box">${esc(tn.value.trim()||'—')}</div>
+  <div class="rp-sign"><div>معلمة المقرر: الأستاذة حياة عائد</div><div>مديرة المدرسة: الأستاذة سوزان التميمي</div></div>`;}
+$('#exportPdf').onclick=()=>{renderReport();try{window.print();}catch(e){toast('الطباعة غير متاحة هنا؛ افتحي الصفحة من ملفها أو من GitHub');}};
+addEventListener('beforeprint',renderReport);
+$('#copyHonor').onclick=async()=>{const t='لوحة الشرف · الشبكات الغذائية · مدرسة الموهوبات العلمية\n'+[...honor].sort((a,b)=>b.points-a.points).map((h,i)=>`${ar(i+1)}. ${h.name} · ${ar(h.points)} نجمة · ${h.badges.join('، ')}`).join('\n');
+  try{await navigator.clipboard.writeText(t);toast('نُسخت القائمة');}catch(e){const b=$('#copyBox');b.hidden=false;b.value=t;b.select();toast('حدّدي النص وانسخيه');}};
+
+renderReport();
+showTab(location.hash.slice(1));
+</script>
+</body>
+</html>
